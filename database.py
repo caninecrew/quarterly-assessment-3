@@ -132,6 +132,10 @@ class Database:
             return False
         finally:
             self.closeConnection()
+
+    def deleteQuestion(self, category, questionId):
+        conn = self.createConnection()
+        
         
     def getQuestions(self, category):
         conn = self.createConnection()
@@ -156,4 +160,5 @@ class Database:
             return []
         finally:
             self.closeConnection()
+
 
