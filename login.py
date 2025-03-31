@@ -8,7 +8,7 @@ class LoginScreen:
     def __init__(self):
         self.root = tk.Tk() # Initialize the root window
         self.root.title("Quiz Bowl Login")
-        self.root.geometry("600X400")
+        self.root.geometry("600x400")
         self.root.configure(bg="#f0f0f0")
         self.setupUI() # Setup the UI components
 
@@ -21,34 +21,37 @@ class LoginScreen:
         style.configure('TButton', font=('Arial', 12), padding=10)
         
         # Main frame
-        main_frame = ttk.Frame(self.root, padding="20")
-        main_frame.pack(expand=True, fill="both")
+        mainFrame = ttk.Frame(self.root, padding="20")
+        mainFrame.pack(expand=True, fill="both")
         
         # Title
-        title_font = font.Font(family='Arial', size=24, weight='bold')
-        title = ttk.Label(main_frame, text="Welcome to Quiz Bowl", font=title_font)
+        titleFont = font.Font(family='Arial', size=24, weight='bold')
+        title = ttk.Label(mainFrame, text="Welcome to Quiz Bowl", font=titleFont)
         title.pack(pady=20)
         
         # Description
-        description = ttk.Label(main_frame, text="Please select your role to continue:", font=('Arial', 14))
+        description = ttk.Label(mainFrame, text="Please select your role to continue:", font=('Arial', 14))
         description.pack(pady=10)
         
         # Buttons frame
-        btn_frame = ttk.Frame(main_frame)
-        btn_frame.pack(pady=20)
+        btnFrame = ttk.Frame(mainFrame)
+        btnFrame.pack(pady=20)
         
         # Quiz taker button
-        quiz_btn = ttk.Button(btn_frame, text="Quiz Taker", 
-                             command=self.open_quiz_taker)
-        quiz_btn.pack(side="left", padx=10, pady=10, ipadx=20)
+        quizBtn = ttk.Button(btnFrame, text="Quiz Taker", 
+                             command=self.openQuizTaker)
+        quizBtn.pack(side="left", padx=10, pady=10, ipadx=20)
         
         # Admin button
-        admin_btn = ttk.Button(btn_frame, text="Administrator", 
-                              command=self.open_admin_login)
-        admin_btn.pack(side="left", padx=10, pady=10, ipadx=20)
+        adminBtn = ttk.Button(btnFrame, text="Administrator", 
+                              command=self.openAdminLogin)
+        adminBtn.pack(side="left", padx=10, pady=10, ipadx=20)
         
         # Exit button
-        exit_btn = ttk.Button(main_frame, text="Exit", 
+        exitBtn = ttk.Button(mainFrame, text="Exit", 
                              command=self.root.destroy)
         
-        exit_btn.pack(pady=20)
+        exitBtn.pack(pady=20)
+
+loginScrn = LoginScreen()
+loginScrn.root.mainloop() # Start the Tkinter main loop
