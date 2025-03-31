@@ -1,5 +1,8 @@
+import tkinter as tk
+from tkinter import tkk, messagebox
+from question import Question
+from database import Database
 import random as rand
-from question import *
 
 varCorrectAnswer = 0
 
