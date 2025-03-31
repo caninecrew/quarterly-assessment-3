@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox, font
+import sqlite3
 from database import Database
 
 class AdminInterface:
