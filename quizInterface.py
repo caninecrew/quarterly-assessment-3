@@ -121,3 +121,13 @@ class QuizInterface:
             print(f"Thank you for playing! You answered {self.score} questions correctly.")
             print(f"Score: {self.score}/{len(self.questions)}")
             input("Press 'Enter' to EXIT")
+
+def main():
+    db = Database()
+    db.populateInitialQuestions()
+
+    quiz = QuizInterface()
+    quiz.runTextInterface()
+
+if __name__ == "__main__":
+    main()
