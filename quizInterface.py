@@ -8,19 +8,19 @@ class QuizInterface:
     def __ini__(self, root=None):
         self.db = Database()
         self.questions = []
-        self.current_question_index = 0
+        self.currentQuestionIndex = 0
         self.score = 0
         self.category = None
         self.root = root
 
-    def get_questions_from_category(self, category, num_questions=5):
+    def get_questions_from_category(self, category, numQuestions=5):
         """Fetch questions from the specified category"""
         self.category = category
-        question_dicts = self.db.getRandomQuestions(category, num_questions)
+        questionDicts = self.db.getRandomQuestions(category, numQuestions)
         
         # Convert dictionaries to Question objects
         self.questions = []
-        for q_dict in question_dicts:
+        for q_dict in questionDicts:
             question = Question(
                 q_dict["question"],
                 q_dict["correctAnswer"],
@@ -31,7 +31,7 @@ class QuizInterface:
             question.id = q_dict["id"]
             self.questions.append(question)
         
-        self.current_question_index = 0
+        self.currentQuestionIndex = 0
         self.score = 0
         return len(self.questions) > 0
 
