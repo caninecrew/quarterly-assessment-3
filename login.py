@@ -183,7 +183,7 @@ class LoginScreen:
             messagebox.showinfo("Success", "Login successful!")
             adminWindow.destroy()
             # Here you would launch the admin interface
-            # adminInterface = AdminInterface(self.root)
+            adminInterface = AdminInterface(self.root)
         else:
             messagebox.showerror("Error", "Invalid username or password")
 
