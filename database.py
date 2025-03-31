@@ -26,6 +26,14 @@ class Database:
             })
         return questions
     
+    def beginSession(self):
+        """Open a connection for multiple operations."""
+        self.createConnection()
+
+    def endSession(self):
+        """Close the connection after multiple operations."""
+        self.closeConnection()
+
     def _validateCategory(self, category):
         """Validate if the category exists in the database."""
         valid_categories = ["History", "Science", "Literature", "Mathematics", "ComputerScience"]
