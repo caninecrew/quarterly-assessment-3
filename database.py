@@ -29,13 +29,15 @@ class Database:
             print("No connection to close.")
 
     def createTables(self):
+        
+        conn = self.createConnection() # Establish connection to the database
         # Create tables for course categories
         tables = [
             "History", "Science", "Literature", "Mathematics", "ComputerScience"
         ]
 
         try:
-            cursor = self.conn.cursor()
+            cursor = conn.cursor()
             for table in tables:
                 cursor.execute(f"""
                     CREATE TABLE IF NOT EXISTS {table} (
