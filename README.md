@@ -78,8 +78,38 @@ A Python quiz application developed for DS3850 Quarterly Assessment 3. This appl
 
 ## Screenshots
 
-[Consider adding screenshots of the main interfaces]
+### User Interface
+![User Selection Screen](screenshots/user_selection.png)
+*Initial screen where users select their role as Quiz Taker or Administrator*
+
+![Category Selection](screenshots/category_selection.png)
+*Quiz takers can select from five different categories (History, Science, Geography, etc.)*
+
+![Correct Answer Feedback](screenshots/correct_answer.png)
+*Instant feedback when a user selects the correct answer, with visual confirmation*
+
+![Incorrect Answer Feedback](screenshots/incorrect_answer.png)
+*Feedback when a user selects an incorrect answer, showing the correct response*
+
+### Administrator Interface
+![Admin Login](screenshots/admin_login.png)
+*Secure administrator login screen requiring username and password*
+
+![Admin Dashboard](screenshots/admin_dashboard.png)
+*Main administrator dashboard with options for managing quiz content*
+
+![Adding New Questions](screenshots/admin_new_question.png)
+*Interface for adding new questions to the database with category selection*
+
+![Database Statistics](screenshots/admin_statistics.png)
+*Overview of database statistics showing question counts by category*
+
+![View and Edit Questions](screenshots/admin_view_edit.png)
+*Question management interface with search, edit, and delete functionality*
+
+![New Question Form](screenshots/new_question.png)
+*Detailed form for creating new questions with correct and incorrect answers*
 
 ## Author
 
-[Your Name]
+Samuel Rumbley
