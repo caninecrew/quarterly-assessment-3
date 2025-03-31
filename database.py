@@ -26,6 +26,14 @@ class Database:
             })
         return questions
     
+    def _validate_category(self, category):
+        """Validate if the category exists in the database."""
+        valid_categories = ["History", "Science", "Literature", "Mathematics", "ComputerScience"]
+        if category not in valid_categories:
+            print(f"Invalid category: {category}. Valid categories are: {', '.join(valid_categories)}")
+            return False
+        return True
+    
     def createConnection(self):
         """Create a database connection to the SQLite database specified by dbFile."""
 
