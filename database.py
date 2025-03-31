@@ -25,6 +25,7 @@ class Database:
     def closeConnection(self):
         if self.conn:
             self.conn.close()
+            self.conn = None # Set the connection to None after closing it
             print("Connection to database closed.")
         else:
             print("No connection to close.")
