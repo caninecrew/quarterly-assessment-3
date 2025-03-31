@@ -33,4 +33,23 @@ class Database:
         tables = [
             "History", "Science", "Literature", "Mathematics", "ComputerScience"
         ]
-        
+
+        try:
+            cursor = self.conn.cursor()
+            for table in tables:
+                cursor.execute(f"""
+                    CREATE TABLE IF NOT EXISTS {table} (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        question TEXT NOT NULL,
+                        correct_answer TEXT NOT NULL,
+                        incorrect_answer1 TEXT NOT NULL,
+                        incorrect_answer2 TEXT NOT NULL,
+                        incorrect_answer3 TEXT NOT NULL
+                    )
+                """)
+            self.conn.commit()
+            print("Tables created successfully.")
+        except sqlite3.Error as e:
+            print(f"Error creating tables: {e}")
+        finally:
+            self.closeConnection()
