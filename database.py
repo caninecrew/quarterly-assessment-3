@@ -5,29 +5,6 @@
 # Assignment: Quarterly Assessment 3
 # Description: Database operations for Quiz Bowl
 
-'''
-Purpose: study test questions
-- Display questions from a dictionary
-- Users should then have a chance to answer; after they answer, the program should provide feedback on whether the answer is correct or not. 
-
-Instructions:
-Define a dictionary with at least 5 of your own trivia questions.
-    o Keys are the questions
-    o Values are the answers
-
-Using a for loop:
-    o Display a question from the dictionary to the user
-    o Prompt the user to input their answer
-    o Check if the user’s answer matches the correct answer from the dictionary
-    o Provide feedback to the user on whether their answer is correct or not
-    o Ask the next question in the dictionary
-
-Optional Additional features:
-     Allow the user to see their score after completing the quiz.
-        o Hint: varCorrectAnswer +=1 would add one to the current value in the variable called varCorrectAnswer if that variable’s data type is a string.
-     Randomize the questions.
-        o Hint: use the randchoice function in the random module
-'''
 import random as rand # random module (as rand)
 
 varCorrectAnswer = 0
