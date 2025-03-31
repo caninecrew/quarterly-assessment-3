@@ -19,7 +19,18 @@ class Question:
         print("Answers:")
         for i, answer in enumerate(self.getShuffledAnswers(), start=1):
             print(f"{i}. {answer}")
-            
+
+    def getDisplayData(self):
+        answers = self.getShuffledAnswers()
+        correctIndex = answers.index(self.correctAnswer)
+        return {
+            "question": self.questionText,
+            "answers": answers,
+            "correctIndex": correctIndex,
+            "category": self.category if hasattr(self, 'category') else None,
+            "id": self.id if hasattr(self, 'id') else None,
+        }
+
     def __str__(self):
         return f"Question: {self.questionText}\nCorrect Answer: {self.correctAnswer}\nIncorrect Answers: {self.incorrectAnswers}"
     
