@@ -244,5 +244,29 @@ class Database:
         finally:
             self.closeConnection()
 
+    def questionCount(self, category=None):
+        """Return the number of questions in a category or total across all categories."""
+        if not self.createConnection():
+            return 0
+            
+        try:
+            cursor = self.conn.cursor()
+            if category:
+                if not self._validate_category(category):
+                    return 0
+                cursor.execute(f"SELECT COUNT(*) FROM {category}")
+                count = cursor.fetchone()[0]
+            else:
+                count = 0
+                for cat in self.get_all_categories():
+                    cursor.execute(f"SELECT COUNT(*) FROM {cat}")
+                    count += cursor.fetchone()[0]
+            return count
+        except sqlite3.Error as e:
+            print(f"Error counting questions: {e}")
+            return 0
+        finally:
+            self.closeConnection()
+
 
 
