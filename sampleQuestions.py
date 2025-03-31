@@ -164,6 +164,47 @@ SAMPLE_QUESTIONS = {
         {"question": "You hike 3 miles in 1 hour. At this rate, how far can you hike in 4 hours?", 
          "correctAnswer": "12 miles", 
          "incorrectAnswers": ["10 miles", "9 miles", "8 miles"]}
+    ],
+    "Computer Science": [
+        {"question": "What does 'CPU' stand for in computing?", 
+         "correctAnswer": "Central Processing Unit", 
+         "incorrectAnswers": ["Computer Performance Unit", "Central Power Utility", "Core Processing Unit"]},
+
+        {"question": "In Python, what symbol is used to begin a comment?", 
+         "correctAnswer": "#", 
+         "incorrectAnswers": ["//", "/*", "<!--"]},
+
+        {"question": "Which data structure uses the First In, First Out (FIFO) principle?", 
+         "correctAnswer": "Queue", 
+         "incorrectAnswers": ["Stack", "List", "Dictionary"]},
+
+        {"question": "What is the primary language used for querying databases?", 
+         "correctAnswer": "SQL", 
+         "incorrectAnswers": ["Python", "HTML", "C++"]},
+
+        {"question": "Which of the following is NOT a type of loop in most programming languages?", 
+         "correctAnswer": "Switch loop", 
+         "incorrectAnswers": ["For loop", "While loop", "Do-while loop"]},
+
+        {"question": "What type of value does a Boolean variable hold?", 
+         "correctAnswer": "True or False", 
+         "incorrectAnswers": ["String", "Integer", "Float"]},
+
+        {"question": "Which HTML tag is used to create a hyperlink?", 
+         "correctAnswer": "<a>", 
+         "incorrectAnswers": ["<link>", "<href>", "<url>"]},
+
+        {"question": "What is the name of the error when a program runs but gives incorrect output?", 
+         "correctAnswer": "Logic error", 
+         "incorrectAnswers": ["Syntax error", "Runtime error", "Compile-time error"]},
+
+        {"question": "Which file extension is commonly associated with Python files?", 
+         "correctAnswer": ".py", 
+         "incorrectAnswers": [".java", ".exe", ".sql"]},
+
+        {"question": "In programming, what is a function?", 
+         "correctAnswer": "A reusable block of code that performs a task", 
+         "incorrectAnswers": ["A comment in the code", "A type of variable", "A loop structure"]}
     ]
 }
 
