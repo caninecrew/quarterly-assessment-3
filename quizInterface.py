@@ -5,7 +5,7 @@ from database import Database
 import random as rand
 
 class QuizInterface:
-    def __ini__(self, root=None):
+    def __init__(self, root=None):  # Fix typo: __ini__ → __init__
         self.db = Database()
         self.questions = []
         self.currentQuestionIndex = 0
@@ -97,10 +97,9 @@ class QuizInterface:
             answers = currentQuestion.getShuffledAnswers() # get shuffled answers
             options = "abcd" # letter options
 
-            print("a)", answers[0]) # print the answers
-            print("b)", answers[1])
-            print("c)", answers[2])
-            print("d)", answers[3])
+            for j, answer in enumerate(answers):
+                if j < len(options):
+                    print(f"{options[j]}) {answer}")
 
             pick = input("Choose a, b, c, or d: ").lower() # user selection
 
@@ -113,14 +112,15 @@ class QuizInterface:
             if self.checkAnswer(selectedAnswer): # check if the answer is correct
                 print("You have chosen correctly")
             else:  
-                print("You have chosen incorrectly")
+                print(f"You have chosen incorrectly. The correct answer was: {currentQuestion.correctAnswer}")
             
-            print() # add space
+            # Move to the next question
+            self.nextQuestion()
 
-            # Display Final Score
-            print(f"Thank you for playing! You answered {self.score} questions correctly.")
-            print(f"Score: {self.score}/{len(self.questions)}")
-            input("Press 'Enter' to EXIT")
+        # Display Final Score after all questions
+        print(f"\nThank you for playing! You answered {self.score} questions correctly.")
+        print(f"Score: {self.score}/{len(self.questions)}")
+        input("Press 'Enter' to EXIT")
 
 def main():
     db = Database()
