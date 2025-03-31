@@ -79,4 +79,23 @@ class Database:
         conn = self.createConnection()
         if not conn: # Check if the connection was successful
             return []
-        cursor = conn.cursor()
+        
+        try:
+            cursor = conn.cursor()
+            cursor.execute(f"SELECT * FROM {category}") # Select all questions from the specified category table
+
+            questions = []
+            for row in cursor.fetchall():
+                questions.append({
+                    "id": row[0],
+                    "question": row[1],
+                    "correctAnswer": row[2],
+                    "incorrectAnswers": [row[3], row[4], row[5]]
+                })
+            return questions # Return the list of questions
+        except sqlite3.Error as e:
+            print(f"Error retrieving questions: {e}")
+            return []
+        finally:
+            self.closeConnection()
+
