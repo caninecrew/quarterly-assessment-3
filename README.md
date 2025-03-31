@@ -47,6 +47,13 @@ A Python quiz application developed for DS3850 Quarterly Assessment 3. This appl
 - `admin.py` - Administrator interface
 - `quiz.py` - Quiz interface
 - `question.py` - Question class
+- `quizInterface.py` - Core quiz logic
+- `quizUI.py` - Quiz user interface
+- `sampleQeustions.py` - Initial sample questions for database population
+- `quizBowl.db` - SQLite database file
+- `projectDescription.md` - Assignment requirements
+- `.gitignore` - Git ignore file
+- `README.md` - Project documentation
 
 ### Database Management
 - Database class with session management
