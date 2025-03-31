@@ -8,3 +8,12 @@ questions = {
             "What is the name of the Mayflower's sister ship?" : ["Speedwell", "Camellia", "Lilac", "Sweetbriar"],
             "Where is the world's largest McDonald's located?" : ["Orlando, Flordia", "Paris, France", "London, England", "New York City, New York"],
 }
+
+class Question:
+    def __init__(self, questionText, correctAnswer, incorrectAnswers):
+        self.questionText = questionText
+        self.correctAnswer = correctAnswer
+        self.incorrectAnswers = incorrectAnswers
+        self.allAnswers = [correctAnswer] + incorrectAnswers
+
+    
