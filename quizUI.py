@@ -192,3 +192,72 @@ class QuizUI:
             self.displayCurrentQuestion()
         else:
             self.showQuizResults()
+
+    def showQuizResults(self):
+        """Show the final quiz results"""
+        # Clear the content frame
+        for widget in self.contentFrame.winfo_children():
+            widget.destroy()
+        
+        # Create result title
+        resultsTitle = ttk.Label(
+            self.contentFrame,
+            text="Quiz Complete!",
+            font=('Arial', 24, 'bold'),
+            style='Quiz.TLabel'
+        )
+        resultsTitle.pack(pady=20)
+        
+        # Show final score
+        totalQuestions = len(self.quizInterface.questions)
+        finalScore = self.quizInterface.score
+        scoreDisplay = ttk.Label(
+            self.contentFrame,
+            text=f"Your Final Score: {finalScore}/{totalQuestions}",
+            font=('Arial', 18),
+            style='Quiz.TLabel'
+        )
+        scoreDisplay.pack(pady=10)
+        
+        # Calculate percentage
+        percentage = (finalScore / totalQuestions) * 100
+        
+        # Show feedback message based on score
+        if percentage >= 90:
+            message = "Excellent! Outstanding performance!"
+            color = "green"
+        elif percentage >= 70:
+            message = "Great job! You know this subject well!"
+            color = "green"
+        elif percentage >= 50:
+            message = "Good effort! Keep studying to improve."
+            color = "blue"
+        else:
+            message = "Keep practicing to improve your knowledge."
+            color = "orange"
+        
+        feedbackMsg = ttk.Label(
+            self.contentFrame,
+            text=message,
+            font=('Arial', 14, 'italic'),
+            foreground=color
+        )
+        feedbackMsg.pack(pady=20)
+        
+        # Try again button
+        tryAgainBtn = ttk.Button(
+            self.contentFrame,
+            text="Try Again",
+            command=self.restartQuiz,
+            style='Quiz.TButton'
+        )
+        tryAgainBtn.pack(pady=10)
+        
+        # Back to categories button
+        backBtn = ttk.Button(
+            self.contentFrame,
+            text="Back to Categories",
+            command=self.on_exit,
+            style='Quiz.TButton'
+        )
+        backBtn.pack(pady=10)
