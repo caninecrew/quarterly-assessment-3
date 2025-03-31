@@ -111,24 +111,10 @@ class LoginScreen:
         quizWindow.protocol("WM_DELETE_WINDOW", 
                         lambda: self.onClosing(quizWindow, parentWindow))
         
-        # Initialize quiz interface
-        quizInterface = QuizInterface(quizWindow)
+        # Create the QuizUI
+        from quizUI import QuizUI
+        quiz_ui = QuizUI(quizWindow, category, parentWindow)
         
-        # Load questions from the selected category
-        if not quizInterface.getQuestionsFromCategory(category, 5):
-            messagebox.showerror("Error", f"No questions available in {category} category")
-            parentWindow.deiconify()
-            quizWindow.destroy()
-            return
-        
-        # Add back button
-        backFrame = ttk.Frame(quizWindow)
-        backFrame.pack(side="bottom", fill="x", pady=10)
-        
-        backBtn = ttk.Button(backFrame, text="Back to Categories", 
-                             command=lambda: self.goBackToCategory(quizWindow, parentWindow))
-        backBtn.pack(side="right", padx=20)
-
     def openAdminLogin(self):
         """Opens the administrator login interface"""
         # Hide the main window
