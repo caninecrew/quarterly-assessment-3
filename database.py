@@ -77,7 +77,7 @@ class Database:
         finally:
             self.closeConnection()
 
-    def updateQuestion(self, category, question_id, question=None, correctAnswer=None, incorrectAnswers=None):
+    def updateQuestion(self, category, questionId, question=None, correctAnswer=None, incorrectAnswers=None):
         
         # Checkthat incorrectAnswers is a list of 3 items if provided
         if incorrectAnswers is not None and len(incorrectAnswers) != 3:
@@ -88,8 +88,41 @@ class Database:
         if not conn: # Check if the connection was successful
             return False
         
-        
+        try:
+            cursor = conn.cursor()
 
+            cursor.execute(f"SELECT * FROM {category} WHERE id = ?", (questionId,)) # Select the question by ID
+            row = cursor.fetchone() # Fetch the question from the database
+
+            if not row: # Check if the question exists
+                print(f"Question with ID {questionId} not found in {category}.")
+                return False
+            
+            # Use existing values if new ones aren't provided
+            new_question = question if question is not None else row[1]
+            new_correctAnswer = correctAnswer if correctAnswer is not None else row[2]
+
+            if incorrectAnswers is not None: # Unpack the list of incorrect answers
+                newIncorrect1 = incorrectAnswers[0]
+                newIncorrect2 = incorrectAnswers[1]
+                newIncorrect3 = incorrectAnswers[2]
+            else: # Use existing values if new ones aren't provided
+                newIncorrect1 = row[3]
+                newIncorrect2 = row[4]
+                newIncorrect3 = row[5]
+
+            # Update the question in the database
+            cursor.execute(f"""
+                UPDATE {category}
+                SET question = ?, correctAnswer = ?, incorrectAnswer1 = ?, incorrectAnswer2 = ?, incorrectAnswer3 = ?
+                WHERE id = ?
+            """, (new_question, new_correctAnswer, newIncorrect1, newIncorrect2, newIncorrect3, questionId))
+
+            conn.commit() # Commit the changes to the database
+
+
+
+        
     def getQuestions(self, category):
         conn = self.createConnection()
         if not conn: # Check if the connection was successful
