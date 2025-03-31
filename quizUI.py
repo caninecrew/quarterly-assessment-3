@@ -100,18 +100,6 @@ class QuizUI:
             state="disabled"
         )
         self.nextButton.pack(pady=10)
-        
-        # Navigation frame at bottom
-        self.navFrame = ttk.Frame(self.root, style='Quiz.TFrame')
-        self.navFrame.pack(side="bottom", fill="x", pady=10, padx=20)
-        
-        # Back button to return to categories
-        self.backButton = ttk.Button(
-            self.navFrame,
-            text="Back to Categories",
-            command=self.on_exit
-        )
-        self.backButton.pack(side="right")
 
     def displayCurrentQuestion(self):
         """Display the current question and answers"""
