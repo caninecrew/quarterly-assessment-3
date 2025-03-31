@@ -14,5 +14,5 @@ quiz_bowl/
 │   │   ├── view_questions.py
 │   │   └── edit_question.py
 │   └── quiz/
-│       ├── quiz_interface.py
+│       └── quiz_interface.py
 └── main.py                    # Application entry point
