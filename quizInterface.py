@@ -83,11 +83,10 @@ class QuizInterface:
 
         print(f"\nStarting quiz in {selected_category} category!")
         print(f"You will answer {len(self.questions)} questions.\n")
-        
-        for ask in questionsGame: # for each question in the list of questions randomly chosen for this game
-            answers = questions[ask] # seperate the answers list
-            correctAns = answers[0] # retain the correct answer before shuffling
-            rand.shuffle(answers) # shuffle the answers for the question
+
+        for i in range(len(self.questions)): 
+            currentQuestion = self.getCurrentQuestion()
+            
 
             print(ask) # print the question
             print("a)", answers[0]) # print the answers
