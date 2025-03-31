@@ -124,5 +124,46 @@ SAMPLE_QUESTIONS = {
          "correctAnswer": "Wilson Rawls", 
          "incorrectAnswers": ["Lois Lowry", "Gary Paulsen", "Jack London"]}
     ],
+    "Mathematics": [
+        {"question": "What is the area of a triangle with a base of 10 inches and a height of 6 inches?", 
+         "correctAnswer": "30 square inches", 
+         "incorrectAnswers": ["60 square inches", "16 square inches", "20 square inches"]},
+
+        {"question": "You have 3 trail mix bags, each weighing 1.5 pounds. What’s the total weight?", 
+         "correctAnswer": "4.5 pounds", 
+         "incorrectAnswers": ["3.5 pounds", "6 pounds", "5 pounds"]},
+
+        {"question": "What is the next number in the sequence: 2, 4, 8, 16, ___?", 
+         "correctAnswer": "32", 
+         "incorrectAnswers": ["20", "30", "24"]},
+
+        {"question": "If you split a $120 budget evenly among 8 Scouts, how much does each receive?", 
+         "correctAnswer": "$15", 
+         "incorrectAnswers": ["$12", "$14", "$10"]},
+
+        {"question": "What is the mean of these numbers: 4, 8, 6, 10, 2?", 
+         "correctAnswer": "6", 
+         "incorrectAnswers": ["5", "7", "8"]},
+
+        {"question": "A tent has a rectangular base 6 ft by 8 ft. What is the perimeter of the base?", 
+         "correctAnswer": "28 ft", 
+         "incorrectAnswers": ["48 ft", "36 ft", "14 ft"]},
+
+        {"question": "What is 25% of 80?", 
+         "correctAnswer": "20", 
+         "incorrectAnswers": ["15", "18", "25"]},
+
+        {"question": "What is the probability of flipping heads on a fair coin?", 
+         "correctAnswer": "1/2", 
+         "incorrectAnswers": ["1/4", "1/3", "2/3"]},
+
+        {"question": "How many degrees are in the sum of interior angles of a triangle?", 
+         "correctAnswer": "180", 
+         "incorrectAnswers": ["90", "270", "360"]},
+
+        {"question": "You hike 3 miles in 1 hour. At this rate, how far can you hike in 4 hours?", 
+         "correctAnswer": "12 miles", 
+         "incorrectAnswers": ["10 miles", "9 miles", "8 miles"]}
+    ]
 }
 
