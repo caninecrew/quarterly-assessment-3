@@ -135,7 +135,36 @@ class Database:
 
     def deleteQuestion(self, category, questionId):
         conn = self.createConnection()
-        
+        if not conn:
+            return False
+
+        try:
+            cursor = conn.cursor()
+
+            # Check if the question exists before attempting to delete it
+            cursor.execute(f"SELECT id FROM {category} WHERE id = ?", (questionId,))
+            if not cursor.fetchone():
+                print(f"Question with ID {questionId} not found in {category}.")
+                return False
+
+            # Delete the qusetion from the database
+            cursor.execute(f"DELETE FROM {category} WHERE id = ?", (questionId,)) # Delete the question by ID
+            
+            conn.commit() # Commit the changes to the database
+
+            if cursor.rowcount > 0: # Check if any rows were deleted
+                print(f"Question with ID {questionId} deleted successfully.")
+                return True
+            else:
+                print(f"No changes made to question with ID {questionId}.")
+                return False
+            
+        except sqlite3.Error as e: # Handle any errors that occur during the deletion process
+            print(f"Error deleting question: {e}")
+            return False
+        finally:
+            self.closeConnection()
+
         
     def getQuestions(self, category):
         conn = self.createConnection()
