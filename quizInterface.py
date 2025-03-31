@@ -4,7 +4,7 @@ from question import Question
 from database import Database
 import random as rand
 
-class QuizInterface:
+class QuizInterface: # QuizInterface class for handling quiz operations
     def __init__(self, root=None):  # Fix typo: __ini__ → __init__
         self.db = Database()
         self.questions = []
