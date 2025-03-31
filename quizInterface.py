@@ -92,6 +92,9 @@ class QuizInterface:
 
             print(f"Question {i+1}/{len(self.questions)}:")
             print(currentQuestion.questionText) # print the question text
+
+            # Get shuffled answers and display with letter options
+            answers = currentQuestion.getShuffledAnswers() # get shuffled answers
             
             print("a)", answers[0]) # print the answers
             print("b)", answers[1])
