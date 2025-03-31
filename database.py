@@ -88,37 +88,7 @@ class Database:
             return False
             
         try:
-            cursor = conn.cursor()
-            # Create standard tables
-            cursor.execute('''
-            CREATE TABLE IF NOT EXISTS questions (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                question TEXT NOT NULL,
-                correctAnswer TEXT NOT NULL,
-                category TEXT NOT NULL
-            )''')
-            
-            cursor.execute('''
-            CREATE TABLE IF NOT EXISTS incorrectAnswers (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                questionId INTEGER NOT NULL,
-                answer TEXT NOT NULL,
-                FOREIGN KEY (questionId) REFERENCES questions(id)
-            )''')
-            
-            cursor.execute('''
-            CREATE TABLE IF NOT EXISTS categories (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL UNIQUE
-            )''')
-            
-            cursor.execute('''
-            CREATE TABLE IF NOT EXISTS adminCredentials (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                username TEXT NOT NULL UNIQUE,
-                password TEXT NOT NULL
-            )''')
-            
+            cursor = conn.cursor()    
             # Create category-specific tables
             categories = ["History", "Science", "Literature", "Mathematics", "ComputerScience"]
             for category in categories:
