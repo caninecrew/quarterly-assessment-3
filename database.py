@@ -265,19 +265,22 @@ class Database:
 
     def questionCount(self, category=None):
         """Return the number of questions in a category or total across all categories."""
-        if not self.createConnection():
+        
+        sessionExisted = self.conn is not None
+        if not sessionExisted and not self.beginSession():
             return 0
-            
+                
         try:
             cursor = self.conn.cursor()
             if category:
-                if not self._validate_category(category):
+                if not self._validateCategory(category):  # Changed from _validate_category to _validateCategory for consistency
                     return 0
                 cursor.execute(f"SELECT COUNT(*) FROM {category}")
                 count = cursor.fetchone()[0]
             else:
                 count = 0
-                for cat in self.get_all_categories():
+                valid_categories = ["History", "Science", "Literature", "Mathematics", "ComputerScience"]
+                for cat in valid_categories:  # Changed from get_all_categories() to use the existing list
                     cursor.execute(f"SELECT COUNT(*) FROM {cat}")
                     count += cursor.fetchone()[0]
             return count
@@ -285,7 +288,8 @@ class Database:
             print(f"Error counting questions: {e}")
             return 0
         finally:
-            self.closeConnection()
+            if not sessionExisted:  # Only close if we opened it
+                self.endSession()
 
 
 
