@@ -246,9 +246,10 @@ class Database:
         """Retrieve random questions from the specified category. Returns a list of questions."""
 
         if not self._validateCategory(category):
-            return False
-    
-        if not self.createConnection():
+            return []  # Changed from False to [] for consistency with getQuestions
+        
+        sessionExisted = self.conn is not None
+        if not sessionExisted and not self.beginSession():
             return []        
                 
         try:
@@ -259,7 +260,8 @@ class Database:
             print(f"Error retrieving random questions: {e}")
             return []
         finally:
-            self.closeConnection()
+            if not sessionExisted:  # Only close if we opened it
+                self.endSession()
 
     def questionCount(self, category=None):
         """Return the number of questions in a category or total across all categories."""
