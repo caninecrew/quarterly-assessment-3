@@ -11,6 +11,7 @@ class Database:
     def __init__(self,dbFile="quizBowl.db"):
         self.dbFile = dbFile
         self.conn = None
+        self.createTables()
     
     def createConnection(self):
         try:
