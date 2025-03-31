@@ -345,5 +345,25 @@ class Database:
             if not sessionExisted:  # Only close if we opened it
                 self.endSession()
 
+    def searchQuestions(self, category, searchTerm):
+        """Search for questions containing the search term."""
+        if not self._validateCategory(category):
+            return []
+        
+        sessionExisted = self.conn is not None
+        if not sessionExisted and not self.beginSession():
+            return []
+        
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute(f"SELECT * FROM {category} WHERE question LIKE ?", (f'%{searchTerm}%',))
+            return self._processQueryResults(cursor)
+        except sqlite3.Error as e:
+            print(f"Error searching questions: {e}")
+            return []
+        finally:
+            if not sessionExisted:
+                self.endSession()
+
 
 
