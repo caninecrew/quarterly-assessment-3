@@ -188,7 +188,6 @@ class Database:
             return False
         finally:
             self.closeConnection()
-
         
     def getQuestions(self, category):
         """Retrieve all questions from the specified category. Returns a list of questions."""
@@ -199,16 +198,7 @@ class Database:
         try:
             cursor = self.conn.cursor()
             cursor.execute(f"SELECT * FROM {category}") # Select all questions from the specified category table
-
-            questions = []
-            for row in cursor.fetchall():
-                questions.append({
-                    "id": row[0],
-                    "question": row[1],
-                    "correctAnswer": row[2],
-                    "incorrectAnswers": [row[3], row[4], row[5]]
-                })
-            return questions # Return the list of questions
+            return self._process_query_results(cursor)  # Use the helper method
         except sqlite3.Error as e:
             print(f"Error retrieving questions: {e}")
             return []
