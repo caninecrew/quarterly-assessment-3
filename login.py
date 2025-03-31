@@ -186,6 +186,17 @@ class LoginScreen:
                              command=lambda: self.goBackToLogin(adminWindow))
         backBtn.pack(side="right", padx=5)
     
+    def verifyAdmin(self, username, password, adminWindow):
+        """Verify administrator credentials"""
+        db = Database()
+        if db.verifyAdminCredentials(username, password):
+            messagebox.showinfo("Success", "Login successful!")
+            adminWindow.destroy()
+            # Here you would launch the admin interface
+            adminInterface = AdminInterface(self.root)
+        else:
+            messagebox.showerror("Error", "Invalid username or password")
+    
 
 loginScrn = LoginScreen()
 loginScrn.root.mainloop() # Start the Tkinter main loop
