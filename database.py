@@ -44,12 +44,9 @@ class Database:
     def endSession(self):
         """Close the connection after multiple operations."""
         self.closeConnection()
-
-
     
     def createConnection(self):
         """Create a database connection to the SQLite database specified by dbFile."""
-
         try:
             self.conn = sqlite3.connect(self.dbFile)
             print("Connection to database established.")
@@ -111,10 +108,11 @@ class Database:
             print("You must provide exactly 3 incorrect answers.")
             return False
         
+        sessionExisted = self.conn is not None
+        if not sessionExisted and not self.beginSession():
+            return False
+        
         try:
-            if not self.createConnection():
-                return False
-                
             cursor = self.conn.cursor()
             cursor.execute(f"""
                 INSERT INTO {category} (question, correctAnswer, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3)
