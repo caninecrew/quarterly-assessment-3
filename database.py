@@ -137,10 +137,11 @@ class Database:
             print("You must provide exactly 3 incorrect answers.")
             return False
         
-        try:
-            if not self.createConnection():
-                return False
-                
+        sessionExisted = self.conn is not None
+        if not sessionExisted and not self.beginSession():
+            return False
+        
+        try:  
             cursor = self.conn.cursor()
             cursor.execute(f"SELECT * FROM {category} WHERE id = ?", (questionId,))
             row = cursor.fetchone()
@@ -179,7 +180,8 @@ class Database:
             print(f"Error updating question: {e}")
             return False
         finally:
-            self.closeConnection()
+            if not sessionExisted:  # Only close if we opened it
+                self.endSession()
 
     def deleteQuestion(self, category, questionId):
         """Delete a question from the database. Returns True if successful, False otherwise."""
