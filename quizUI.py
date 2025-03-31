@@ -183,3 +183,12 @@ class QuizUI:
         
         # Enable next button
         self.nextButton.config(state="normal")
+
+    def nextQuestion(self):
+        """Move to the next question"""
+        hasMore = self.quizInterface.nextQuestion()
+        
+        if hasMore:
+            self.displayCurrentQuestion()
+        else:
+            self.showQuizResults()
