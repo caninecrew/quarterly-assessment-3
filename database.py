@@ -27,3 +27,10 @@ class Database:
             print("Connection to database closed.")
         else:
             print("No connection to close.")
+
+    def createTables(self):
+        # Create tables for course categories
+        tables = [
+            "History", "Science", "Literature", "Mathematics", "ComputerScience"
+        ]
+        
