@@ -14,6 +14,8 @@ class Database:
         self.createTables()
     
     def createConnection(self):
+        """Create a database connection to the SQLite database specified by dbFile."""
+
         try:
             self.conn = sqlite3.connect(self.dbFile)
             print("Connection to database established.")
@@ -23,6 +25,8 @@ class Database:
             return False
         
     def closeConnection(self):
+        """Close the database connection. Returns True if successful, False otherwise."""
+
         if self.conn:
             self.conn.close()
             self.conn = None # Set the connection to None after closing it
@@ -33,7 +37,8 @@ class Database:
             return False
 
     def createTables(self):
-        
+        """Create tables for all categories if they don't exist. Returns True if successful, False otherwise."""
+
         conn = self.createConnection() # Establish connection to the database
         # Create tables for course categories
         tables = [
@@ -64,6 +69,7 @@ class Database:
 
     def addQuestion(self, category, question, correctAnswer, incorrectAnswers):
         """Add a question to the database. Returns True if successful, False otherwise."""
+
         if len(incorrectAnswers) != 3:
             print("You must provide exactly 3 incorrect answers.")
             return False
@@ -88,6 +94,7 @@ class Database:
 
     def updateQuestion(self, category, questionId, question=None, correctAnswer=None, incorrectAnswers=None):
         """Update a question in the database. Returns True if successful, False otherwise."""
+
         if incorrectAnswers is not None and len(incorrectAnswers) != 3:
             print("You must provide exactly 3 incorrect answers.")
             return False
@@ -137,6 +144,8 @@ class Database:
             self.closeConnection()
 
     def deleteQuestion(self, category, questionId):
+        """Delete a question from the database. Returns True if successful, False otherwise."""
+
         if not self.createConnection():
             return False
         
@@ -169,6 +178,8 @@ class Database:
 
         
     def getQuestions(self, category):
+        """Retrieve all questions from the specified category. Returns a list of questions."""
+        
         if not self.createConnection():
             return False        
                 
