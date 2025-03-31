@@ -17,18 +17,20 @@ class Database:
         try:
             self.conn = sqlite3.connect(self.dbFile)
             print("Connection to database established.")
-            return self.conn
+            return True
         except sqlite3.Error as e:
             print(f"Error connecting to database: {e}")
-            return None
+            return False
         
     def closeConnection(self):
         if self.conn:
             self.conn.close()
             self.conn = None # Set the connection to None after closing it
             print("Connection to database closed.")
+            return True
         else:
             print("No connection to close.")
+            return False
 
     def createTables(self):
         
@@ -61,7 +63,7 @@ class Database:
     def addQuestion(self, category, question, correctAnswer, incorrectAnswers):
         if len(incorrectAnswers) != 3: # Ensure exactly 3 incorrect answers are provided
             print("You must provide exactly 3 incorrect answers.")
-            return
+            return False
         
         try:
             conn = self.createConnection() # Establish connection to the database
