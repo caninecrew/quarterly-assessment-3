@@ -225,20 +225,22 @@ class Database:
         """Retrieve all questions from the specified category. Returns a list of questions."""
 
         if not self._validateCategory(category):
-            return False
+            return []
         
-        if not self.createConnection():
-            return []        
-                
+        sessionExisted = self.conn is not None
+        if not sessionExisted and not self.beginSession():
+            return []
+        
         try:
             cursor = self.conn.cursor()
-            cursor.execute(f"SELECT * FROM {category}") # Select all questions from the specified category table
+            cursor.execute(f"SELECT * FROM {category}")  # Select all questions from the specified category table
             return self._processQueryResults(cursor)  # Use the helper method
         except sqlite3.Error as e:
             print(f"Error retrieving questions: {e}")
             return []
         finally:
-            self.closeConnection()
+            if not sessionExisted:  # Only close if we opened it
+                self.endSession()
 
     def getRandomQuestions(self, category, limit=5):
         """Retrieve random questions from the specified category. Returns a list of questions."""
