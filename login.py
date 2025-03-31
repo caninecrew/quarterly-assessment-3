@@ -196,6 +196,12 @@ class LoginScreen:
             adminInterface = AdminInterface(self.root)
         else:
             messagebox.showerror("Error", "Invalid username or password")
+
+    def goBackToLogin(self, currentWindow):
+        """Return to the login screen"""
+        currentWindow.destroy()
+        self.root.deiconify()
+    
     
 
 loginScrn = LoginScreen()
