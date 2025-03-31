@@ -82,6 +82,47 @@ SAMPLE_QUESTIONS = {
         {"question": "What type of tree loses its leaves annually?", 
          "correctAnswer": "Deciduous", 
          "incorrectAnswers": ["Coniferous", "Evergreen", "Perennial"]}
-    ]
+    ],
+    "Literature": [
+        {"question": "Who wrote *To Kill a Mockingbird*, a novel that explores themes of justice and morality?", 
+         "correctAnswer": "Harper Lee", 
+         "incorrectAnswers": ["Mark Twain", "F. Scott Fitzgerald", "John Steinbeck"]},
+
+        {"question": "What is the name of the boy who leads the group in *Lord of the Flies* before things fall apart?", 
+         "correctAnswer": "Ralph", 
+         "incorrectAnswers": ["Jack", "Simon", "Piggy"]},
+
+        {"question": "*The Call of the Wild* is set in which harsh, rugged environment?", 
+         "correctAnswer": "Yukon Territory", 
+         "incorrectAnswers": ["Rocky Mountains", "Alaskan Coast", "Sierra Nevada"]},
+
+        {"question": "Which American author is known for adventure novels such as *The Adventures of Tom Sawyer* and *Huckleberry Finn*?", 
+         "correctAnswer": "Mark Twain", 
+         "incorrectAnswers": ["Ernest Hemingway", "Jack London", "Nathaniel Hawthorne"]},
+
+        {"question": "What genre best describes *Hatchet* by Gary Paulsen?", 
+         "correctAnswer": "Survival fiction", 
+         "incorrectAnswers": ["Science fiction", "Mystery", "Historical fiction"]},
+
+        {"question": "In *Of Mice and Men*, what is Lennie's dream along with George?", 
+         "correctAnswer": "To own a small farm", 
+         "incorrectAnswers": ["To strike gold", "To run a store", "To write a novel"]},
+
+        {"question": "What famous dystopian novel begins with the line, 'It was a bright cold day in April, and the clocks were striking thirteen'?", 
+         "correctAnswer": "*1984*", 
+         "incorrectAnswers": ["*Fahrenheit 451*", "*Brave New World*", "*The Giver*"]},
+
+        {"question": "Which character famously says, 'The greatest thing you'll ever learn is just to love and be loved in return'?", 
+         "correctAnswer": "Christian from *Moulin Rouge!*", 
+         "incorrectAnswers": ["Jay Gatsby", "Atticus Finch", "Romeo"]},
+
+        {"question": "Which novel follows Scout Finch as she grows up in the racially segregated South?", 
+         "correctAnswer": "*To Kill a Mockingbird*", 
+         "incorrectAnswers": ["*The Secret Life of Bees*", "*A Separate Peace*", "*Roll of Thunder, Hear My Cry*"]},
+
+        {"question": "Who wrote *Where the Red Fern Grows*, a story about a boy and his hunting dogs?", 
+         "correctAnswer": "Wilson Rawls", 
+         "incorrectAnswers": ["Lois Lowry", "Gary Paulsen", "Jack London"]}
+    ],
 }
 
