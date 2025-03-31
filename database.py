@@ -9,7 +9,7 @@ import sqlite3
 from sampleQuestions import SAMPLE_QUESTIONS
 
 class Database:
-    def __init__(self,dbFile="quizBowl.db"):
+    def __init__(self, dbFile="quizBowl.db"):
         self.dbFile = dbFile
         self.conn = None
         self.createTables()
@@ -68,36 +68,70 @@ class Database:
             print("No connection to close.")
             return False
 
+    def connect(self):
+        """Connect to the SQLite database"""
+        try:
+            conn = sqlite3.connect(self.dbFile)
+            print("Connection to database established.")
+            return conn  # Return the connection object, not a boolean
+        except sqlite3.Error as e:
+            print(f"Database connection error: {e}")
+            return None  # Return None on error, not False
+
     def createTables(self):
-        """Create tables for all categories if they don't exist. Returns True if successful, False otherwise."""
-
-        conn = self.createConnection() # Establish connection to the database
-        # Create tables for course categories
-        tables = [
-            "History", "Science", "Literature", "Mathematics", "ComputerScience"
-        ]
-
+        """Create the necessary tables if they don't exist"""
+        conn = self.connect()
+        
+        # Check if connection was successful
+        if conn is None:
+            print("Failed to create tables: could not connect to database")
+            return False
+            
         try:
             cursor = conn.cursor()
-            for table in tables:
-                cursor.execute(f"""
-                    CREATE TABLE IF NOT EXISTS {table} (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        question TEXT NOT NULL,
-                        correctAnswer TEXT NOT NULL,
-                        incorrectAnswer1 TEXT NOT NULL,
-                        incorrectAnswer2 TEXT NOT NULL,
-                        incorrectAnswer3 TEXT NOT NULL
-                    )
-                """)
-            self.conn.commit()
-            print("Tables created successfully.")
+            # Create questions table
+            cursor.execute('''
+            CREATE TABLE IF NOT EXISTS questions (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                question TEXT NOT NULL,
+                correctAnswer TEXT NOT NULL,
+                category TEXT NOT NULL
+            )''')
+            
+            # Create incorrect answers table (related to questions)
+            cursor.execute('''
+            CREATE TABLE IF NOT EXISTS incorrectAnswers (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                questionId INTEGER NOT NULL,
+                answer TEXT NOT NULL,
+                FOREIGN KEY (questionId) REFERENCES questions(id)
+            )''')
+            
+            # Create categories table
+            cursor.execute('''
+            CREATE TABLE IF NOT EXISTS categories (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL UNIQUE
+            )''')
+            
+            # Create admin credentials table
+            cursor.execute('''
+            CREATE TABLE IF NOT EXISTS adminCredentials (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT NOT NULL UNIQUE,
+                password TEXT NOT NULL
+            )''')
+            
+            # Commit changes
+            conn.commit()
             return True
         except sqlite3.Error as e:
             print(f"Error creating tables: {e}")
             return False
         finally:
-            self.closeConnection()
+            if conn:
+                conn.close()
+                print("Connection to database closed.")
 
     def populateInitialQuestions(self):
         """Populate database with initial questions if tables are empty."""
