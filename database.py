@@ -55,8 +55,10 @@ class Database:
                 """)
             self.conn.commit()
             print("Tables created successfully.")
+            return True
         except sqlite3.Error as e:
             print(f"Error creating tables: {e}")
+            return False
         finally:
             self.closeConnection()
 
@@ -133,7 +135,7 @@ class Database:
             return False
         finally:
             self.closeConnection()
-            
+
     def deleteQuestion(self, category, questionId):
         conn = self.createConnection()
         if not conn:
