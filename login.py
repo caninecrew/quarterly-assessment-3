@@ -205,6 +205,7 @@ class LoginScreen:
                 parentWindow.deiconify()
             else:
                 self.root.deiconify()
-
-loginScrn = LoginScreen()
-loginScrn.root.mainloop() # Start the Tkinter main loop
+    
+    def run(self):
+        """Run the main loop of the application"""
+        self.root.mainloop()
