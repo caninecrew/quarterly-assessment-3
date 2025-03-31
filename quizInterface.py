@@ -75,14 +75,11 @@ class QuizInterface:
                 print("Invalid choice. Please try again.")
             except ValueError:
                 print("Please enter a number.")
-                
-        varCorrectAnswer = 0
 
-        questionsList = list(questions.keys()) # creates a list of all the keys to the dictionary (questions)
-        questionsGame = [] # the questions chosen for the game (initialize variable)
-        for i in range(0, 5): # choose a question 5 times using range() and a for loop
-            questionsGame.append(rand.choice(questionsList)) # randonly select a choice from the questionsList and append to the list of questions for use in the game
-        rand.shuffle(questionsGame) # shuffle the questionsGame list
+        # Get questions from selected category
+        if not self.getQuestionsFromCategory(selected_category, 5):
+            print("No questions available in this category.")
+            return
 
         for ask in questionsGame: # for each question in the list of questions randomly chosen for this game
             answers = questions[ask] # seperate the answers list
