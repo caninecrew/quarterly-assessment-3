@@ -1,12 +1,9 @@
 # Author: Samuel Rumbley
-# Date: 2/21/2025
+# Date: 3/31/2025
 # Class: DS 3850-001
 # Instructor: Dr. Grant Clary
-# Assignment: Friday Project 4
-# Description: Quiz Bowl
-# AI Statement: I have not given or received unauthorized assistance on this assignment and I acknowledge that this is my own work.
-
-# Python script from the Friday Project 4 assignment to use as a starting point for the Quarterly Assessment.
+# Assignment: Quarterly Assessment 3
+# Description: Database operations for Quiz Bowl
 
 '''
 Purpose: study test questions
