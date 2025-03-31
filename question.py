@@ -14,5 +14,10 @@ class Question:
         random.shuffle(shuffled)
         return shuffled
     
-
+    def display(self):
+        print(f"Question: {self.questionText}")
+        print("Answers:")
+        for i, answer in enumerate(self.getShuffledAnswers(), start=1):
+            print(f"{i}. {answer}")
+            
     
