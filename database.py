@@ -105,37 +105,11 @@ class Database:
             print("Database already contains questions. Skipping initial population.")
             return True
             
-        # Sample questions from fridayProject4.py and additional ones
-        sample_data = {
-            "History": [
-                {"question": "Who was the second Vice President of the United States?", 
-                "correctAnswer": "Thomas Jefferson", 
-                "incorrectAnswers": ["John Adams", "Aaron Burr", "George Clinton"]},
-                {"question": "How many of Henry VIII's wives were executed?", 
-                "correctAnswer": "two", 
-                "incorrectAnswers": ["one", "three", "four"]},
-                {"question": "What is the name of the Mayflower's sister ship?", 
-                "correctAnswer": "Speedwell", 
-                "incorrectAnswers": ["Camellia", "Lilac", "Sweetbriar"]},
-                # Add 7 more history questions to meet the 10-question requirement
-            ],
-            "Science": [
-                # Add 10 science questions
-            ],
-            "Literature": [
-                # Add 10 literature questions
-            ],
-            "Mathematics": [
-                # Add 10 math questions
-            ],
-            "ComputerScience": [
-                # Add 10 computer science questions
-            ]
-        }
+        
         
         try:
             self.beginSession()
-            for category, questions in sample_data.items():
+            for category, questions in sampleData.items():
                 for q in questions:
                     self.addQuestion(
                         category,
@@ -374,7 +348,7 @@ class Database:
         
         ADMIN_USERNAME = "admin"
         ADMIN_PASSWORD = "password123" # Use a secure password in production
-        
+
         return username == ADMIN_USERNAME and password == ADMIN_PASSWORD
 
 
