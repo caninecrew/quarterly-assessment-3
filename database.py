@@ -189,7 +189,8 @@ class Database:
         if not self._validateCategory(category):
             return False
         
-        if not self.createConnection():
+        sessionExisted = self.conn is not None
+        if not sessionExisted and not self.beginSession():
             return False
         
         try:
@@ -201,23 +202,24 @@ class Database:
                 print(f"Question with ID {questionId} not found in {category}.")
                 return False
 
-            # Delete the qusetion from the database
-            cursor.execute(f"DELETE FROM {category} WHERE id = ?", (questionId,)) # Delete the question by ID
+            # Delete the question from the database
+            cursor.execute(f"DELETE FROM {category} WHERE id = ?", (questionId,)) 
             
-            self.conn.commit() # Commit the changes to the database
+            self.conn.commit()
 
-            if cursor.rowcount > 0: # Check if any rows were deleted
+            if cursor.rowcount > 0:
                 print(f"Question with ID {questionId} deleted successfully.")
                 return True
             else:
                 print(f"No changes made to question with ID {questionId}.")
                 return False
             
-        except sqlite3.Error as e: # Handle any errors that occur during the deletion process
+        except sqlite3.Error as e:
             print(f"Error deleting question: {e}")
             return False
         finally:
-            self.closeConnection()
+            if not sessionExisted:  # Only close if we opened it
+                self.endSession()
         
     def getQuestions(self, category):
         """Retrieve all questions from the specified category. Returns a list of questions."""
