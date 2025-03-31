@@ -5,3 +5,18 @@
 # Assignment: Quarterly Assessment 3
 # Description: Database operations for Quiz Bowl
 
+import sqlite3
+
+class Database:
+    def __init__(self,dbFile="quizBowl.db"):
+        self.dbFile = dbFile
+        self.conn = None
+    
+    def createConnection(self):
+        try:
+            self.conn = sqlite3.connect(self.dbFile)
+            print("Connection to database established.")
+            return self.conn
+        except sqlite3.Error as e:
+            print(f"Error connecting to database: {e}")
+            return None
