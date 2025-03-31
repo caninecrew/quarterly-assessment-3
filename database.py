@@ -13,7 +13,7 @@ class Database:
         self.conn = None
         self.createTables()
 
-    def _process_query_results(self, cursor):
+    def _processQueryResults(self, cursor):
         """Process query results into a list of question dictionaries."""
         # This is an internal helper method
         questions = []
@@ -26,7 +26,7 @@ class Database:
             })
         return questions
     
-    def _validate_category(self, category):
+    def _validateCategory(self, category):
         """Validate if the category exists in the database."""
         valid_categories = ["History", "Science", "Literature", "Mathematics", "ComputerScience"]
         if category not in valid_categories:
@@ -91,6 +91,9 @@ class Database:
     def addQuestion(self, category, question, correctAnswer, incorrectAnswers):
         """Add a question to the database. Returns True if successful, False otherwise."""
 
+        if not self._validateCategory(category):
+            return False
+        
         if len(incorrectAnswers) != 3:
             print("You must provide exactly 3 incorrect answers.")
             return False
@@ -116,6 +119,9 @@ class Database:
     def updateQuestion(self, category, questionId, question=None, correctAnswer=None, incorrectAnswers=None):
         """Update a question in the database. Returns True if successful, False otherwise."""
 
+        if not self._validateCategory(category):
+            return False
+        
         if incorrectAnswers is not None and len(incorrectAnswers) != 3:
             print("You must provide exactly 3 incorrect answers.")
             return False
@@ -206,7 +212,7 @@ class Database:
         try:
             cursor = self.conn.cursor()
             cursor.execute(f"SELECT * FROM {category}") # Select all questions from the specified category table
-            return self._process_query_results(cursor)  # Use the helper method
+            return self._processQueryResults(cursor)  # Use the helper method
         except sqlite3.Error as e:
             print(f"Error retrieving questions: {e}")
             return []
@@ -222,7 +228,7 @@ class Database:
         try:
             cursor = self.conn.cursor()
             cursor.execute(f"SELECT * FROM {category} ORDER BY RANDOM() LIMIT ?", (limit,))  # Select random questions with a limit
-            return self._process_query_results(cursor)  # Use the helper method
+            return self._processQueryResults(cursor)  # Use the helper method
         except sqlite3.Error as e:
             print(f"Error retrieving random questions: {e}")
             return []
