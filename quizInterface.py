@@ -87,7 +87,9 @@ class QuizInterface:
         for i in range(len(self.questions)): 
             currentQuestion = self.getCurrentQuestion()
             
-
+            if not currentQuestion:
+                break
+            
             print(ask) # print the question
             print("a)", answers[0]) # print the answers
             print("b)", answers[1])
