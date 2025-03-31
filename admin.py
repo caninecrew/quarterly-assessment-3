@@ -274,4 +274,239 @@ class AddQuestion:
             self.window.destroy()
         else:
             messagebox.showerror("Error", "Failed to add question. Please try again.")
+
+class ViewQuestions:
+    def __init__(self, parent, db):
+        self.parent = parent
+        self.db = db
+        
+        # Create a new window
+        self.window = tk.Toplevel(parent)
+        self.window.title("View/Edit Questions")
+        self.window.geometry("900x700")
+        self.window.configure(bg="#f0f0f0")
+        
+        # Setup the UI
+        self.setupUI()
+    
+    def setupUI(self):
+        # Main frame
+        mainFrame = ttk.Frame(self.window, padding="20")
+        mainFrame.pack(expand=True, fill="both")
+        
+        # Title
+        title = ttk.Label(
+            mainFrame, 
+            text="View and Edit Questions",
+            font=('Arial', 18, 'bold')
+        )
+        title.pack(pady=10)
+        
+        # Category filter
+        filterFrame = ttk.Frame(mainFrame)
+        filterFrame.pack(fill="x", pady=10)
+        
+        filterLabel = ttk.Label(
+            filterFrame,
+            text="Filter by Category:",
+            width=15
+        )
+        filterLabel.pack(side="left", padx=5)
+        
+        self.categoryVar = tk.StringVar()
+        categories = self.db.getCategories()
+        categoryCombo = ttk.Combobox(
+            filterFrame,
+            textvariable=self.categoryVar,
+            values=categories,
+            state="readonly",
+            width=30
+        )
+        categoryCombo.pack(side="left", padx=5)
+        if categories:
+            categoryCombo.current(0)
+            
+        loadBtn = ttk.Button(
+            filterFrame,
+            text="Load Questions",
+            command=self.loadQuestions
+        )
+        loadBtn.pack(side="left", padx=20)
+        
+        # Search frame
+        searchFrame = ttk.Frame(mainFrame)
+        searchFrame.pack(fill="x", pady=10)
+        
+        searchLabel = ttk.Label(
+            searchFrame,
+            text="Search:",
+            width=15
+        )
+        searchLabel.pack(side="left", padx=5)
+        
+        self.searchEntry = ttk.Entry(searchFrame, width=30)
+        self.searchEntry.pack(side="left", padx=5)
+        
+        searchBtn = ttk.Button(
+            searchFrame,
+            text="Search",
+            command=self.searchQuestions
+        )
+        searchBtn.pack(side="left", padx=5)
+        
+        # Questions list
+        listFrame = ttk.Frame(mainFrame)
+        listFrame.pack(fill="both", expand=True, pady=10)
+        
+        # Create treeview for questions
+        self.tree = ttk.Treeview(
+            listFrame, 
+            columns=("ID", "Question", "Correct Answer"),
+            show="headings"
+        )
+        
+        # Configure columns
+        self.tree.heading("ID", text="ID")
+        self.tree.heading("Question", text="Question")
+        self.tree.heading("Correct Answer", text="Correct Answer")
+        
+        self.tree.column("ID", width=50)
+        self.tree.column("Question", width=500)
+        self.tree.column("Correct Answer", width=200)
+        
+        # Add scrollbar
+        scrollbar = ttk.Scrollbar(listFrame, orient="vertical", command=self.tree.yview)
+        self.tree.configure(yscrollcommand=scrollbar.set)
+        
+        # Pack the treeview and scrollbar
+        self.tree.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
+        
+        # Bind select event
+        self.tree.bind("<<TreeviewSelect>>", self.onQuestionSelect)
+        
+        # Buttons for actions
+        btnFrame = ttk.Frame(mainFrame)
+        btnFrame.pack(fill="x", pady=10)
+        
+        self.editBtn = ttk.Button(
+            btnFrame,
+            text="Edit Selected",
+            command=self.editQuestion,
+            state="disabled"
+        )
+        self.editBtn.pack(side="left", padx=5)
+        
+        self.deleteBtn = ttk.Button(
+            btnFrame,
+            text="Delete Selected",
+            command=self.deleteQuestion,
+            state="disabled"
+        )
+        self.deleteBtn.pack(side="left", padx=5)
+        
+        closeBtn = ttk.Button(
+            btnFrame,
+            text="Close",
+            command=self.window.destroy
+        )
+        closeBtn.pack(side="right", padx=5)
+        
+        # Load questions for the first category
+        if categories:
+            self.loadQuestions()
+    
+    def loadQuestions(self):
+        """Load questions from the selected category"""
+        category = self.categoryVar.get()
+        if not category:
+            messagebox.showerror("Error", "Please select a category")
+            return
+        
+        # Clear existing items
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+        
+        # Get questions
+        questions = self.db.getQuestions(category)
+        
+        # Add to treeview
+        for q in questions:
+            self.tree.insert("", "end", values=(q["id"], q["question"], q["correctAnswer"]))
+    
+    def searchQuestions(self):
+        """Search for questions containing the search term"""
+        searchTerm = self.searchEntry.get().strip()
+        if not searchTerm:
+            messagebox.showinfo("Info", "Please enter a search term")
+            return
+        
+        category = self.categoryVar.get()
+        if not category:
+            messagebox.showerror("Error", "Please select a category")
+            return
+        
+        # Clear existing items
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+        
+        # Get questions matching search
+        questions = self.db.searchQuestions(category, searchTerm)
+        
+        # Add to treeview
+        for q in questions:
+            self.tree.insert("", "end", values=(q["id"], q["question"], q["correctAnswer"]))
+        
+        # Show message if no results
+        if not questions:
+            messagebox.showinfo("Search Results", f"No questions found matching '{searchTerm}'")
+    
+    def onQuestionSelect(self, event):
+        """Enable buttons when a question is selected"""
+        selected = self.tree.selection()
+        
+        if selected:
+            self.editBtn.config(state="normal")
+            self.deleteBtn.config(state="normal")
+        else:
+            self.editBtn.config(state="disabled")
+            self.deleteBtn.config(state="disabled")
+    
+    def editQuestion(self):
+        """Open edit interface for the selected question"""
+        selected = self.tree.selection()
+        
+        if not selected:
+            return
+        
+        # Get question ID and category
+        item = self.tree.item(selected[0])
+        questionId = item["values"][0]
+        category = self.categoryVar.get()
+        
+        # Open edit dialog
+        EditQuestion(self.window, self.db, category, questionId, self.loadQuestions)
+    
+    def deleteQuestion(self):
+        """Delete the selected question"""
+        selected = self.tree.selection()
+        
+        if not selected:
+            return
+        
+        # Get question ID and category
+        item = self.tree.item(selected[0])
+        questionId = item["values"][0]
+        questionText = item["values"][1]
+        category = self.categoryVar.get()
+        
+        # Confirm deletion
+        if messagebox.askyesno("Confirm Delete", f"Are you sure you want to delete this question?\n\n{questionText}"):
+            success = self.db.deleteQuestion(category, questionId)
+            
+            if success:
+                messagebox.showinfo("Success", "Question deleted successfully")
+                self.loadQuestions()  # Reload questions
+            else:
+                messagebox.showerror("Error", "Failed to delete question")
     
