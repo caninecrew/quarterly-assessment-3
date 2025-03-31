@@ -12,6 +12,19 @@ class Database:
         self.dbFile = dbFile
         self.conn = None
         self.createTables()
+
+    def _process_query_results(self, cursor):
+        """Process query results into a list of question dictionaries."""
+        # This is an internal helper method
+        questions = []
+        for row in cursor.fetchall():
+            questions.append({
+                "id": row[0],
+                "question": row[1],
+                "correctAnswer": row[2],
+                "incorrectAnswers": [row[3], row[4], row[5]]
+            })
+        return questions
     
     def createConnection(self):
         """Create a database connection to the SQLite database specified by dbFile."""
@@ -226,5 +239,6 @@ class Database:
             return []
         finally:
             self.closeConnection()
+
 
 
