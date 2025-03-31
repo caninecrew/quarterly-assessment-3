@@ -20,4 +20,8 @@ class Question:
         for i, answer in enumerate(self.getShuffledAnswers(), start=1):
             print(f"{i}. {answer}")
             
+    def __str__(self):
+        return f"Question: {self.questionText}\nCorrect Answer: {self.correctAnswer}\nIncorrect Answers: {self.incorrectAnswers}"
+    
+
     
