@@ -261,3 +261,28 @@ class QuizUI:
             style='Quiz.TButton'
         )
         backBtn.pack(pady=10)
+
+    def restartQuiz(self):
+        """Restart the current quiz"""
+        # Get fresh questions from the same category
+        success = self.quizInterface.getQuestionsFromCategory(self.category, 5)
+        
+        if not success:
+            messagebox.showerror("Error", "Could not retrieve new questions. Please try again later.")
+            return
+        
+        # Clear the content frame
+        for widget in self.contentFrame.winfo_children():
+            widget.destroy()
+        
+        # Set up the UI again
+        self.setupUI()
+        
+        # Start with the first question
+        self.displayCurrentQuestion()
+    
+    def on_exit(self):
+        """Handle exiting the quiz"""
+        self.root.destroy()
+        if self.parentWindow:
+            self.parentWindow.deiconify()
