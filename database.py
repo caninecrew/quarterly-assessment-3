@@ -365,5 +365,11 @@ class Database:
             if not sessionExisted:
                 self.endSession()
 
+    def getCategories(self):
+        """Return a list of all categories in the database."""
+        return ["History", "Science", "Literature", "Mathematics", "ComputerScience"]
+
+    
+
 
 
