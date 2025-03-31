@@ -206,6 +206,11 @@ class LoginScreen:
         """Return to the category selection screen"""
         quizWindow.destroy()
         categoryWindow.deiconify()
+
+    def goBackToCategory(self, quizWindow, categoryWindow):
+        """Return to the category selection screen"""
+        quizWindow.destroy()
+        categoryWindow.deiconify()
     
     
 
