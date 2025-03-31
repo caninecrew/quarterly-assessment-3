@@ -88,3 +88,20 @@ class AdminInterface:
     def openViewQuestions(self):
         """Open the View/Edit Questions interface"""
         ViewQuestions(self.adminWindow, self.db)
+
+    def showDatabaseStats(self):
+        """Show database statistics"""
+        # Get category counts
+        categories = self.db.getCategories()
+        stats = "Database Statistics:\n\n"
+        
+        total = 0
+        for category in categories:
+            count = self.db.questionCount(category)
+            total += count
+            stats += f"{category}: {count} questions\n"
+        
+        stats += f"\nTotal Questions: {total}"
+        
+        # Show in a message box
+        messagebox.showinfo("Database Statistics", stats)
