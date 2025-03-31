@@ -58,7 +58,13 @@ class QuizInterface:
         """Run a text-based version of the quiz using Question objects"""
         print("Welcome to Quiz Bowl!")
         print("You will be asked 5 questions. Choose the correct answer from the options provided.")
-        
+
+        # Get available categories
+        categories = self.db.getCategories()
+        print("Available categories:")
+        for i, category in enumerate(categories, 1):
+            print(f"{i}. {category}")
+            
         varCorrectAnswer = 0
 
         questionsList = list(questions.keys()) # creates a list of all the keys to the dictionary (questions)
