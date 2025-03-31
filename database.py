@@ -85,61 +85,55 @@ class Database:
             self.closeConnection()
 
     def updateQuestion(self, category, questionId, question=None, correctAnswer=None, incorrectAnswers=None):
-        
-        # Checkthat incorrectAnswers is a list of 3 items if provided
+        """Update a question in the database. Returns True if successful, False otherwise."""
         if incorrectAnswers is not None and len(incorrectAnswers) != 3:
             print("You must provide exactly 3 incorrect answers.")
             return False
         
-        conn = self.createConnection() # Establish connection to the database
-        if not conn: # Check if the connection was successful
-            return False
-        
         try:
-            cursor = conn.cursor()
+            if not self.createConnection():
+                return False
+                
+            cursor = self.conn.cursor()
+            cursor.execute(f"SELECT * FROM {category} WHERE id = ?", (questionId,))
+            row = cursor.fetchone()
 
-            cursor.execute(f"SELECT * FROM {category} WHERE id = ?", (questionId,)) # Select the question by ID
-            row = cursor.fetchone() # Fetch the question from the database
-
-            if not row: # Check if the question exists
+            if not row:
                 print(f"Question with ID {questionId} not found in {category}.")
                 return False
             
-            # Use existing values if new ones aren't provided
             new_question = question if question is not None else row[1]
             new_correctAnswer = correctAnswer if correctAnswer is not None else row[2]
 
-            if incorrectAnswers is not None: # Unpack the list of incorrect answers
+            if incorrectAnswers is not None:
                 newIncorrect1 = incorrectAnswers[0]
                 newIncorrect2 = incorrectAnswers[1]
                 newIncorrect3 = incorrectAnswers[2]
-            else: # Use existing values if new ones aren't provided
+            else:
                 newIncorrect1 = row[3]
                 newIncorrect2 = row[4]
                 newIncorrect3 = row[5]
 
-            # Update the question in the database
             cursor.execute(f"""
                 UPDATE {category}
                 SET question = ?, correctAnswer = ?, incorrectAnswer1 = ?, incorrectAnswer2 = ?, incorrectAnswer3 = ?
                 WHERE id = ?
             """, (new_question, new_correctAnswer, newIncorrect1, newIncorrect2, newIncorrect3, questionId))
 
-            conn.commit() # Commit the changes to the database
+            self.conn.commit()
 
-            if cursor.rowcount > 0: # Check if any rows were updated
+            if cursor.rowcount > 0:
                 print(f"Question with ID {questionId} updated successfully.")
                 return True
             else:
                 print(f"No changes made to question with ID {questionId}.")
                 return False
-
-        except sqlite3.Error as e: # Handle any errors that occur during the update process
+        except sqlite3.Error as e:
             print(f"Error updating question: {e}")
             return False
         finally:
             self.closeConnection()
-
+            
     def deleteQuestion(self, category, questionId):
         conn = self.createConnection()
         if not conn:
