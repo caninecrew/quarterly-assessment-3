@@ -137,12 +137,11 @@ class Database:
             self.closeConnection()
 
     def deleteQuestion(self, category, questionId):
-        conn = self.createConnection()
-        if not conn:
+        if not self.createConnection():
             return False
-
+        
         try:
-            cursor = conn.cursor()
+            cursor = self.conn.cursor()
 
             # Check if the question exists before attempting to delete it
             cursor.execute(f"SELECT id FROM {category} WHERE id = ?", (questionId,))
@@ -153,7 +152,7 @@ class Database:
             # Delete the qusetion from the database
             cursor.execute(f"DELETE FROM {category} WHERE id = ?", (questionId,)) # Delete the question by ID
             
-            conn.commit() # Commit the changes to the database
+            self.conn.commit() # Commit the changes to the database
 
             if cursor.rowcount > 0: # Check if any rows were deleted
                 print(f"Question with ID {questionId} deleted successfully.")
@@ -170,10 +169,9 @@ class Database:
 
         
     def getQuestions(self, category):
-        conn = self.createConnection()
-        if not conn: # Check if the connection was successful
-            return []
-        
+        if not self.createConnection():
+            return False        
+                
         try:
             cursor = conn.cursor()
             cursor.execute(f"SELECT * FROM {category}") # Select all questions from the specified category table
