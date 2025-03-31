@@ -54,48 +54,48 @@ class LoginScreen:
         exitBtn.pack(pady=20)
 
     def openQuizTaker(self):
-            """Opens the quiz taker interface"""
-            # Hide the main window
-            self.root.withdraw()
-            
-            # Create a new window for category selection
-            categoryWindow = tk.Toplevel()
-            categoryWindow.title("Quiz Bowl - Select Category")
-            categoryWindow.geometry("600x400")
-            categoryWindow.configure(bg="#f0f0f0")
-            
-            # Add a protocol to handle window closing
-            categoryWindow.protocol("WM_DELETE_WINDOW", 
-                                lambda: self.onClosing(categoryWindow))
-            
-            # Create the main frame
-            mainFrame = ttk.Frame(categoryWindow, padding="20")
-            mainFrame.pack(expand=True, fill="both")
-            
-            # Add title
-            titleFont = font.Font(family='Arial', size=18, weight='bold')
-            title = ttk.Label(mainFrame, text="Select a Quiz Category", font=titleFont)
-            title.pack(pady=20)
-            
-            # Get categories from database
-            db = Database()
-            categories = db.getCategories()
-            
-            # Display categories as buttons
-            for category in categories:
-                # Format display name (e.g., "ComputerScience" -> "Computer Science")
-                displayName = category
-                if category == "ComputerScience":
-                    displayName = "Computer Science"
-                    
-                btn = ttk.Button(mainFrame, text=displayName,
-                            command=lambda cat=category: self.startQuiz(categoryWindow, cat))
-                btn.pack(pady=5, fill="x")
-            
-            # Add back button
-            backBtn = ttk.Button(mainFrame, text="Back to Login", 
-                                command=lambda: self.goBackToLogin(categoryWindow))
-            backBtn.pack(pady=20)
+        """Opens the quiz taker interface"""
+        # Hide the main window
+        self.root.withdraw()
+        
+        # Create a new window for category selection
+        categoryWindow = tk.Toplevel()
+        categoryWindow.title("Quiz Bowl - Select Category")
+        categoryWindow.geometry("600x400")
+        categoryWindow.configure(bg="#f0f0f0")
+        
+        # Add a protocol to handle window closing
+        categoryWindow.protocol("WM_DELETE_WINDOW", 
+                            lambda: self.onClosing(categoryWindow))
+        
+        # Create the main frame
+        mainFrame = ttk.Frame(categoryWindow, padding="20")
+        mainFrame.pack(expand=True, fill="both")
+        
+        # Add title
+        titleFont = font.Font(family='Arial', size=18, weight='bold')
+        title = ttk.Label(mainFrame, text="Select a Quiz Category", font=titleFont)
+        title.pack(pady=20)
+        
+        # Get categories from database
+        db = Database()
+        categories = db.getCategories()
+        
+        # Display categories as buttons
+        for category in categories:
+            # Format display name (e.g., "ComputerScience" -> "Computer Science")
+            displayName = category
+            if category == "ComputerScience":
+                displayName = "Computer Science"
+                
+            btn = ttk.Button(mainFrame, text=displayName,
+                        command=lambda cat=category: self.startQuiz(categoryWindow, cat))
+            btn.pack(pady=5, fill="x")
+        
+        # Add back button
+        backBtn = ttk.Button(mainFrame, text="Back to Login", 
+                            command=lambda: self.goBackToLogin(categoryWindow))
+        backBtn.pack(pady=20)
 
     def startQuiz(self, parentWindow, category):
         """Start the quiz with the selected category"""
@@ -106,6 +106,10 @@ class LoginScreen:
         quizWindow.title(f"Quiz Bowl - {category}")
         quizWindow.geometry("800x600")
         quizWindow.configure(bg="#f0f0f0")
+        
+        # Add protocol for window closing
+        quizWindow.protocol("WM_DELETE_WINDOW", 
+                        lambda: self.onClosing(quizWindow, parentWindow))
         
         # Initialize quiz interface
         quizInterface = QuizInterface(quizWindow)
@@ -193,7 +197,7 @@ class LoginScreen:
             messagebox.showinfo("Success", "Login successful!")
             adminWindow.destroy()
             # Here you would launch the admin interface
-            adminInterface = AdminInterface(self.root)
+            # adminInterface = AdminInterface(self.root)
         else:
             messagebox.showerror("Error", "Invalid username or password")
 
@@ -206,13 +210,15 @@ class LoginScreen:
         """Return to the category selection screen"""
         quizWindow.destroy()
         categoryWindow.deiconify()
-
-    def goBackToCategory(self, quizWindow, categoryWindow):
-        """Return to the category selection screen"""
-        quizWindow.destroy()
-        categoryWindow.deiconify()
     
-    
+    def onClosing(self, window, parentWindow=None):
+        """Handle window closing"""
+        if messagebox.askokcancel("Quit", "Do you want to quit?"):
+            window.destroy()
+            if parentWindow:
+                parentWindow.deiconify()
+            else:
+                self.root.deiconify()
 
 loginScrn = LoginScreen()
 loginScrn.root.mainloop() # Start the Tkinter main loop
