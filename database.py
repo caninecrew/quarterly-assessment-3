@@ -120,8 +120,18 @@ class Database:
 
             conn.commit() # Commit the changes to the database
 
+            if cursor.rowcount > 0: # Check if any rows were updated
+                print(f"Question with ID {questionId} updated successfully.")
+                return True
+            else:
+                print(f"No changes made to question with ID {questionId}.")
+                return False
 
-
+        except sqlite3.Error as e: # Handle any errors that occur during the update process
+            print(f"Error updating question: {e}")
+            return False
+        finally:
+            self.closeConnection()
         
     def getQuestions(self, category):
         conn = self.createConnection()
