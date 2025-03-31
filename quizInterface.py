@@ -89,8 +89,10 @@ class QuizInterface:
             
             if not currentQuestion:
                 break
+
+            print(f"Question {i+1}/{len(self.questions)}:")
+            print(currentQuestion.questionText) # print the question text
             
-            print(ask) # print the question
             print("a)", answers[0]) # print the answers
             print("b)", answers[1])
             print("c)", answers[2])
