@@ -95,6 +95,7 @@ class QuizInterface:
 
             # Get shuffled answers and display with letter options
             answers = currentQuestion.getShuffledAnswers() # get shuffled answers
+            options = "abcd" # letter options
             
             print("a)", answers[0]) # print the answers
             print("b)", answers[1])
@@ -103,8 +104,8 @@ class QuizInterface:
 
             pick = input("Choose a, b, c, or d: ").lower() # user selection
 
-            while pick != "a" and pick != "b" and pick != "c" and pick != "d": # while the user input is not a, b, c, or d
-                pick = input("You must choose either a, b, c, or d: ").lower() # user selection
+            while pick not in options[:len(answers)]:
+                pick = input("You must choose either a, b, c, or d: ").lower()
 
             if pick == "a": # assigns picked to equal the value of the answer chosen (as stated in the original dictionary)
                 picked = answers[0]
