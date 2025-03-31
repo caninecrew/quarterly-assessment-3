@@ -112,3 +112,43 @@ class QuizUI:
             command=self.on_exit
         )
         self.backButton.pack(side="right")
+
+    def displayCurrentQuestion(self):
+        """Display the current question and answers"""
+        currentQuestion = self.quizInterface.getCurrentQuestion()
+        
+        if not currentQuestion:
+            self.showQuizResults()
+            return
+        
+        # Update question counter
+        questionNum = self.quizInterface.currentQuestionIndex + 1
+        totalQuestions = len(self.quizInterface.questions)
+        self.questionCounter.config(text=f"Question {questionNum}/{totalQuestions}")
+        
+        # Update question text
+        self.questionLabel.config(text=currentQuestion.questionText)
+        
+        # Get shuffled answers
+        answers = currentQuestion.getShuffledAnswers()
+        
+        # Reset feedback and next button
+        self.feedbackLabel.config(text="")
+        self.nextButton.config(state="disabled")
+        
+        # Update answer buttons
+        for i, button in enumerate(self.answerButtons):
+            if i < len(answers):
+                answer = answers[i]
+                button.config(
+                    text=answer,
+                    command=lambda ans=answer: self.checkAnswer(ans),
+                    state="normal"
+                )
+            else:
+                button.config(text="", state="disabled")
+        
+        # Update score display
+        self.scoreLabel.config(
+            text=f"Score: {self.quizInterface.score}/{totalQuestions}"
+        )
