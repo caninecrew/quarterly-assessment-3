@@ -244,23 +244,29 @@ class QuizUI:
         )
         feedbackMsg.pack(pady=20)
         
-        # Try again button
+        # Button frame for options
+        buttonFrame = ttk.Frame(self.contentFrame, style='Quiz.TFrame')
+        buttonFrame.pack(pady=20)
+        
+        # Try Again button
         tryAgainBtn = ttk.Button(
-            self.contentFrame,
+            buttonFrame,
             text="Try Again",
             command=self.restartQuiz,
-            style='Quiz.TButton'
+            style='Quiz.TButton',
+            width=15
         )
-        tryAgainBtn.pack(pady=10)
+        tryAgainBtn.pack(side="left", padx=10)
         
         # Back to categories button
         backBtn = ttk.Button(
-            self.contentFrame,
+            buttonFrame,
             text="Back to Categories",
             command=self.on_exit,
-            style='Quiz.TButton'
+            style='Quiz.TButton',
+            width=15
         )
-        backBtn.pack(pady=10)
+        backBtn.pack(side="left", padx=10)
 
     def restartQuiz(self):
         """Restart the current quiz"""
