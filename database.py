@@ -202,4 +202,29 @@ class Database:
         finally:
             self.closeConnection()
 
+    def getRandomQuestions(self, category, limit=5):
+        """Retrieve random questions from the specified category. Returns a list of questions."""
+
+        if not self.createConnection():
+            return []        
+                
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute(f"SELECT * FROM {category} ORDER BY RANDOM() LIMIT ?", (limit,))  # Select random questions with a limit
+
+            questions = []
+            for row in cursor.fetchall():
+                questions.append({
+                    "id": row[0],
+                    "question": row[1],
+                    "correctAnswer": row[2],
+                    "incorrectAnswers": [row[3], row[4], row[5]]
+                })
+            return questions  # Return the list of questions
+        except sqlite3.Error as e:
+            print(f"Error retrieving random questions: {e}")
+            return []
+        finally:
+            self.closeConnection()
+
 
