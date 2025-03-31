@@ -89,7 +89,7 @@ class Database:
             
         try:
             cursor = conn.cursor()
-            # Create questions table
+            # Create standard tables
             cursor.execute('''
             CREATE TABLE IF NOT EXISTS questions (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -98,7 +98,6 @@ class Database:
                 category TEXT NOT NULL
             )''')
             
-            # Create incorrect answers table (related to questions)
             cursor.execute('''
             CREATE TABLE IF NOT EXISTS incorrectAnswers (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -107,20 +106,31 @@ class Database:
                 FOREIGN KEY (questionId) REFERENCES questions(id)
             )''')
             
-            # Create categories table
             cursor.execute('''
             CREATE TABLE IF NOT EXISTS categories (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL UNIQUE
             )''')
             
-            # Create admin credentials table
             cursor.execute('''
             CREATE TABLE IF NOT EXISTS adminCredentials (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 username TEXT NOT NULL UNIQUE,
                 password TEXT NOT NULL
             )''')
+            
+            # Create category-specific tables
+            categories = ["History", "Science", "Literature", "Mathematics", "ComputerScience"]
+            for category in categories:
+                cursor.execute(f'''
+                CREATE TABLE IF NOT EXISTS {category} (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    question TEXT NOT NULL,
+                    correctAnswer TEXT NOT NULL,
+                    incorrectAnswer1 TEXT NOT NULL,
+                    incorrectAnswer2 TEXT NOT NULL,
+                    incorrectAnswer3 TEXT NOT NULL
+                )''')
             
             # Commit changes
             conn.commit()
