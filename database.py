@@ -173,7 +173,7 @@ class Database:
             return False        
                 
         try:
-            cursor = conn.cursor()
+            cursor = self.conn.cursor()
             cursor.execute(f"SELECT * FROM {category}") # Select all questions from the specified category table
 
             questions = []
