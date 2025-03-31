@@ -61,23 +61,26 @@ class Database:
             self.closeConnection()
 
     def addQuestion(self, category, question, correctAnswer, incorrectAnswers):
-        if len(incorrectAnswers) != 3: # Ensure exactly 3 incorrect answers are provided
+        """Add a question to the database. Returns True if successful, False otherwise."""
+        if len(incorrectAnswers) != 3:
             print("You must provide exactly 3 incorrect answers.")
             return False
         
         try:
-            conn = self.createConnection() # Establish connection to the database
-            if not conn: # Check if the connection was successful
-                return []
-            cursor = conn.cursor() # Create a cursor object to execute SQL commands
+            if not self.createConnection():
+                return False
+                
+            cursor = self.conn.cursor()
             cursor.execute(f"""
                 INSERT INTO {category} (question, correctAnswer, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3)
                 VALUES (?, ?, ?, ?, ?)
-            """, (question, correctAnswer, *incorrectAnswers)) # Unpack the list of incorrect answers
-            conn.commit() # Commit the changes to the database
-            print("Question added successfully.") # Insert the question into the specified category table
+            """, (question, correctAnswer, *incorrectAnswers))
+            self.conn.commit()
+            print("Question added successfully.")
+            return True
         except sqlite3.Error as e:
-            print(f"Error adding question: {e}") # Handle any errors that occur during the insertion process
+            print(f"Error adding question: {e}")
+            return False
         finally:
             self.closeConnection()
 
