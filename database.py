@@ -368,8 +368,16 @@ class Database:
     def getCategories(self):
         """Return a list of all categories in the database."""
         return ["History", "Science", "Literature", "Mathematics", "ComputerScience"]
-
     
+    def verifyAdminCredentials(self, username, password):
+        """Verify admin credentials."""
+        
+        ADMIN_USERNAME = "admin"
+        ADMIN_PASSWORD = "password123" # Use a secure password in production
+        
+        return username == ADMIN_USERNAME and password == ADMIN_PASSWORD
+
+
 
 
 
