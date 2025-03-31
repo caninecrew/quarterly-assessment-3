@@ -6,6 +6,7 @@
 # Description: Database operations for Quiz Bowl
 
 import sqlite3
+from sampleQuestions import SAMPLE_QUESTIONS
 
 class Database:
     def __init__(self,dbFile="quizBowl.db"):
@@ -105,7 +106,7 @@ class Database:
             print("Database already contains questions. Skipping initial population.")
             return True
             
-        
+        sampleData = SAMPLE_QUESTIONS # Dictionary containing sample questions
         
         try:
             self.beginSession()
