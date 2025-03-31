@@ -110,15 +110,14 @@ class QuizInterface:
             answerIndex = options.index(pick)
             selectedAnswer = answers[answerIndex] # get the selected answer
 
-            if picked == correctAns: # compare answer picked to correct answer
-                print("You have chosen correctly") # print if equal
-                varCorrectAnswer += 1 # add one point to the score
-
-            elif picked != correctAns:  # compare answer picked to correct answer
-                print("You have chosen incorrectly") # print if not equal
+            if self.checkAnswer(selectedAnswer): # check if the answer is correct
+                print("You have chosen correctly")
+            else:  
+                print("You have chosen incorrectly")
             
             print() # add space
 
-            print(f"Thank you for playing! You answered {varCorrectAnswer} questions correctly.")
-            print(f"Score: {varCorrectAnswer}/5")
+            # Display Final Score
+            print(f"Thank you for playing! You answered {self.score} questions correctly.")
+            print(f"Score: {self.score}/{len(self.questions)}")
             input("Press 'Enter' to EXIT")
