@@ -125,7 +125,8 @@ class Database:
             print(f"Error adding question: {e}")
             return False
         finally:
-            self.closeConnection()
+            if not sessionExisted: 
+                self.endSession()
 
     def updateQuestion(self, category, questionId, question=None, correctAnswer=None, incorrectAnswers=None):
         """Update a question in the database. Returns True if successful, False otherwise."""
