@@ -41,10 +41,10 @@ class Database:
                     CREATE TABLE IF NOT EXISTS {table} (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         question TEXT NOT NULL,
-                        correct_answer TEXT NOT NULL,
-                        incorrect_answer1 TEXT NOT NULL,
-                        incorrect_answer2 TEXT NOT NULL,
-                        incorrect_answer3 TEXT NOT NULL
+                        correctAnswer TEXT NOT NULL,
+                        incorrectAnswer1 TEXT NOT NULL,
+                        incorrectAnswer2 TEXT NOT NULL,
+                        incorrectAnswer3 TEXT NOT NULL
                     )
                 """)
             self.conn.commit()
@@ -65,7 +65,7 @@ class Database:
                 return []
             cursor = conn.cursor() # Create a cursor object to execute SQL commands
             cursor.execute(f"""
-                INSERT INTO {category} (question, correct_answer, incorrect_answer1, incorrect_answer2, incorrect_answer3)
+                INSERT INTO {category} (question, correctAnswer, incorrectAnswer1, incorrectAnswer2, incorrectAnswer3)
                 VALUES (?, ?, ?, ?, ?)
             """, (question, correctAnswer, *incorrectAnswers)) # Unpack the list of incorrect answers
             conn.commit() # Commit the changes to the database
