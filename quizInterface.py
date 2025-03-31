@@ -48,6 +48,11 @@ class QuizInterface:
             self.score += 1
             return True
         return False
+    
+    def nextQuestion(self):
+        """Move to the next question"""
+        self.currentQuestionIndex += 1
+        return self.currentQuestionIndex < len(self.questions)
 
     def runTextInterface(self):
         varCorrectAnswer = 0
