@@ -80,3 +80,11 @@ class AdminInterface:
             style='Admin.TButton'
         )
         logoutBtn.pack(pady=20)
+
+    def openAddQuestion(self):
+        """Open the Add Question interface"""
+        AddQuestion(self.adminWindow, self.db)
+    
+    def openViewQuestions(self):
+        """Open the View/Edit Questions interface"""
+        ViewQuestions(self.adminWindow, self.db)
