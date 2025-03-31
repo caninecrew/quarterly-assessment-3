@@ -105,3 +105,10 @@ class AdminInterface:
         
         # Show in a message box
         messagebox.showinfo("Database Statistics", stats)
+
+    def onExit(self):
+        """Handle exiting the admin interface"""
+        if messagebox.askokcancel("Logout", "Are you sure you want to logout?"):
+            self.adminWindow.destroy()
+            self.root.deiconify()
+    
