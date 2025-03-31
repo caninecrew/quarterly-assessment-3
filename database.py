@@ -60,15 +60,23 @@ class Database:
             return
         
         try:
-            self.conn = self.createConnection() # Establish connection to the database
-            cursor = self.conn.cursor() # Create a cursor object to execute SQL commands
+            conn = self.createConnection() # Establish connection to the database
+            if not conn: # Check if the connection was successful
+                return []
+            cursor = conn.cursor() # Create a cursor object to execute SQL commands
             cursor.execute(f"""
                 INSERT INTO {category} (question, correct_answer, incorrect_answer1, incorrect_answer2, incorrect_answer3)
                 VALUES (?, ?, ?, ?, ?)
             """, (question, correctAnswer, *incorrectAnswers)) # Unpack the list of incorrect answers
-            self.conn.commit() # Commit the changes to the database
+            conn.commit() # Commit the changes to the database
             print("Question added successfully.") # Insert the question into the specified category table
         except sqlite3.Error as e:
             print(f"Error adding question: {e}") # Handle any errors that occur during the insertion process
         finally:
             self.closeConnection()
+
+    def getQuestions(self, category):
+        conn = self.createConnection()
+        if not conn: # Check if the connection was successful
+            return []
+        cursor = conn.cursor()
