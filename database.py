@@ -111,8 +111,8 @@ class Database:
                 print(f"Question with ID {questionId} not found in {category}.")
                 return False
             
-            new_question = question if question is not None else row[1]
-            new_correctAnswer = correctAnswer if correctAnswer is not None else row[2]
+            newQuestion = question if question is not None else row[1]
+            newCorrectAnswer = correctAnswer if correctAnswer is not None else row[2]
 
             if incorrectAnswers is not None:
                 newIncorrect1 = incorrectAnswers[0]
@@ -127,7 +127,7 @@ class Database:
                 UPDATE {category}
                 SET question = ?, correctAnswer = ?, incorrectAnswer1 = ?, incorrectAnswer2 = ?, incorrectAnswer3 = ?
                 WHERE id = ?
-            """, (new_question, new_correctAnswer, newIncorrect1, newIncorrect2, newIncorrect3, questionId))
+            """, (newQuestion, newCorrectAnswer, newIncorrect1, newIncorrect2, newIncorrect3, questionId))
 
             self.conn.commit()
 
@@ -179,7 +179,7 @@ class Database:
         
     def getQuestions(self, category):
         """Retrieve all questions from the specified category. Returns a list of questions."""
-        
+
         if not self.createConnection():
             return False        
                 
