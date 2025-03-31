@@ -152,3 +152,34 @@ class QuizUI:
         self.scoreLabel.config(
             text=f"Score: {self.quizInterface.score}/{totalQuestions}"
         )
+
+    def checkAnswer(self, selectedAnswer):
+        """Check if the selected answer is correct"""
+        # Disable all answer buttons after selection
+        for button in self.answerButtons:
+            button.config(state="disabled")
+        
+        # Check the answer
+        isCorrect = self.quizInterface.checkAnswer(selectedAnswer)
+        
+        # Show feedback
+        if isCorrect:
+            self.feedbackLabel.config(
+                text="Correct! Well done.",
+                foreground="green"
+            )
+        else:
+            correctAnswer = self.quizInterface.getCurrentQuestion().correctAnswer
+            self.feedbackLabel.config(
+                text=f"Incorrect. The correct answer is: {correctAnswer}",
+                foreground="red"
+            )
+        
+        # Update score
+        totalQuestions = len(self.quizInterface.questions)
+        self.scoreLabel.config(
+            text=f"Score: {self.quizInterface.score}/{totalQuestions}"
+        )
+        
+        # Enable next button
+        self.nextButton.config(state="normal")
