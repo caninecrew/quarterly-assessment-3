@@ -509,4 +509,270 @@ class ViewQuestions:
                 self.loadQuestions()  # Reload questions
             else:
                 messagebox.showerror("Error", "Failed to delete question")
+
+class EditQuestion:
+    def __init__(self, parent, db, category, questionId, reloadCallback):
+        self.parent = parent
+        self.db = db
+        self.category = category
+        self.questionId = questionId
+        self.reloadCallback = reloadCallback
+        
+        # Create a new window
+        self.window = tk.Toplevel(parent)
+        self.window.title(f"Edit Question #{questionId}")
+        self.window.geometry("700x600")
+        self.window.configure(bg="#f0f0f0")
+        
+        # Load the question data
+        self.loadQuestionData()
+        
+        # Setup the UI
+        self.setupUI()
+    
+    def loadQuestionData(self):
+        """Load question data from database"""
+        conn = self.db.connect()
+        if not conn:
+            messagebox.showerror("Error", "Database connection failed")
+            self.window.destroy()
+            return
+            
+        cursor = conn.cursor()
+        
+        try:
+            # Get the question data
+            cursor.execute(f"SELECT * FROM {self.category} WHERE id = ?", (self.questionId,))
+            questionData = cursor.fetchone()
+            
+            if not questionData:
+                messagebox.showerror("Error", f"Question #{self.questionId} not found")
+                self.window.destroy()
+                conn.close()
+                return
+                
+            # Store the data
+            self.questionData = {
+                "question": questionData[1],
+                "correctAnswer": questionData[2],
+                "incorrectAnswers": [
+                    questionData[3],
+                    questionData[4],
+                    questionData[5]
+                ]
+            }
+            
+        except sqlite3.Error as e:
+            messagebox.showerror("Error", f"Database error: {e}")
+            self.window.destroy()
+        finally:
+            conn.close()
+    
+    def setupUI(self):
+        # Main frame
+        mainFrame = ttk.Frame(self.window, padding="20")
+        mainFrame.pack(expand=True, fill="both")
+        
+        # Title
+        title = ttk.Label(
+            mainFrame, 
+            text=f"Edit Question #{self.questionId}",
+            font=('Arial', 18, 'bold')
+        )
+        title.pack(pady=10)
+        
+        # Category (not editable)
+        categoryFrame = ttk.Frame(mainFrame)
+        categoryFrame.pack(fill="x", pady=10)
+        
+        categoryLabel = ttk.Label(
+            categoryFrame,
+            text="Category:",
+            width=15,
+            anchor="e"
+        )
+        categoryLabel.pack(side="left", padx=5)
+        
+        categoryValue = ttk.Label(
+            categoryFrame,
+            text=self.category
+        )
+        categoryValue.pack(side="left", padx=5)
+        
+        # Question text
+        questionFrame = ttk.Frame(mainFrame)
+        questionFrame.pack(fill="x", pady=10)
+        
+        questionLabel = ttk.Label(
+            questionFrame,
+            text="Question:",
+            width=15,
+            anchor="ne"
+        )
+        questionLabel.pack(side="left", padx=5)
+        
+        self.questionText = tk.Text(
+            questionFrame,
+            wrap="word",
+            height=5,
+            width=50
+        )
+        self.questionText.insert("1.0", self.questionData["question"])
+        self.questionText.pack(side="left", padx=5)
+        
+        # Correct answer
+        correctFrame = ttk.Frame(mainFrame)
+        correctFrame.pack(fill="x", pady=10)
+        
+        correctLabel = ttk.Label(
+            correctFrame,
+            text="Correct Answer:",
+            width=15,
+            anchor="e"
+        )
+        correctLabel.pack(side="left", padx=5)
+        
+        self.correctAnswer = ttk.Entry(correctFrame, width=50)
+        self.correctAnswer.insert(0, self.questionData["correctAnswer"])
+        self.correctAnswer.pack(side="left", padx=5)
+        
+        # Incorrect answers
+        incorrectFrames = []
+        self.incorrectAnswers = []
+        
+        for i in range(3):
+            frame = ttk.Frame(mainFrame)
+            frame.pack(fill="x", padyclass EditQuestion:
+    def __init__(self, parent, db, category, questionId, reloadCallback):
+        self.parent = parent
+        self.db = db
+        self.category = category
+        self.questionId = questionId
+        self.reloadCallback = reloadCallback
+        
+        # Create a new window
+        self.window = tk.Toplevel(parent)
+        self.window.title(f"Edit Question #{questionId}")
+        self.window.geometry("700x600")
+        self.window.configure(bg="#f0f0f0")
+        
+        # Load the question data
+        self.loadQuestionData()
+        
+        # Setup the UI
+        self.setupUI()
+    
+    def loadQuestionData(self):
+        """Load question data from database"""
+        conn = self.db.connect()
+        if not conn:
+            messagebox.showerror("Error", "Database connection failed")
+            self.window.destroy()
+            return
+            
+        cursor = conn.cursor()
+        
+        try:
+            # Get the question data
+            cursor.execute(f"SELECT * FROM {self.category} WHERE id = ?", (self.questionId,))
+            questionData = cursor.fetchone()
+            
+            if not questionData:
+                messagebox.showerror("Error", f"Question #{self.questionId} not found")
+                self.window.destroy()
+                conn.close()
+                return
+                
+            # Store the data
+            self.questionData = {
+                "question": questionData[1],
+                "correctAnswer": questionData[2],
+                "incorrectAnswers": [
+                    questionData[3],
+                    questionData[4],
+                    questionData[5]
+                ]
+            }
+            
+        except sqlite3.Error as e:
+            messagebox.showerror("Error", f"Database error: {e}")
+            self.window.destroy()
+        finally:
+            conn.close()
+    
+    def setupUI(self):
+        # Main frame
+        mainFrame = ttk.Frame(self.window, padding="20")
+        mainFrame.pack(expand=True, fill="both")
+        
+        # Title
+        title = ttk.Label(
+            mainFrame, 
+            text=f"Edit Question #{self.questionId}",
+            font=('Arial', 18, 'bold')
+        )
+        title.pack(pady=10)
+        
+        # Category (not editable)
+        categoryFrame = ttk.Frame(mainFrame)
+        categoryFrame.pack(fill="x", pady=10)
+        
+        categoryLabel = ttk.Label(
+            categoryFrame,
+            text="Category:",
+            width=15,
+            anchor="e"
+        )
+        categoryLabel.pack(side="left", padx=5)
+        
+        categoryValue = ttk.Label(
+            categoryFrame,
+            text=self.category
+        )
+        categoryValue.pack(side="left", padx=5)
+        
+        # Question text
+        questionFrame = ttk.Frame(mainFrame)
+        questionFrame.pack(fill="x", pady=10)
+        
+        questionLabel = ttk.Label(
+            questionFrame,
+            text="Question:",
+            width=15,
+            anchor="ne"
+        )
+        questionLabel.pack(side="left", padx=5)
+        
+        self.questionText = tk.Text(
+            questionFrame,
+            wrap="word",
+            height=5,
+            width=50
+        )
+        self.questionText.insert("1.0", self.questionData["question"])
+        self.questionText.pack(side="left", padx=5)
+        
+        # Correct answer
+        correctFrame = ttk.Frame(mainFrame)
+        correctFrame.pack(fill="x", pady=10)
+        
+        correctLabel = ttk.Label(
+            correctFrame,
+            text="Correct Answer:",
+            width=15,
+            anchor="e"
+        )
+        correctLabel.pack(side="left", padx=5)
+        
+        self.correctAnswer = ttk.Entry(correctFrame, width=50)
+        self.correctAnswer.insert(0, self.questionData["correctAnswer"])
+        self.correctAnswer.pack(side="left", padx=5)
+        
+        # Incorrect answers
+        incorrectFrames = []
+        self.incorrectAnswers = []
+        
+        for i in range(3):
+            frame = ttk.Frame(mainFrame)
+            frame.pack(fill="x", pady
     
