@@ -57,6 +57,6 @@ def runTextInterface(self):
         
         print() # add space
 
-    print(f"Thank you for playing! You answered {varCorrectAnswer} questions correctly.")
-    print(f"Score: {varCorrectAnswer}/5")
-    input("Press 'Enter' to EXIT")
+        print(f"Thank you for playing! You answered {varCorrectAnswer} questions correctly.")
+        print(f"Score: {varCorrectAnswer}/5")
+        input("Press 'Enter' to EXIT")
