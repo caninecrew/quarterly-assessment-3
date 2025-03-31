@@ -48,6 +48,21 @@ A Python quiz application developed for DS3850 Quarterly Assessment 3. This appl
 - `quiz.py` - Quiz interface
 - `question.py` - Question class
 
+### Database Management
+- Database class with session management
+- Question storage in category-specific tables
+- Functions for CRUD operations (Create, Read, Update, Delete)
+
+### User Interface
+- Login screen with role selection
+- Quiz interface with multiple-choice questions
+- Admin dashboard for question management
+
+### Quiz Logic
+- Question class for encapsulating quiz questions
+- Random question selection
+- Score tracking and feedback
+
 ## Technologies Used
 
 - Python 3.8
