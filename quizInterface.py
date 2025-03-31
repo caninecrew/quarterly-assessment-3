@@ -64,7 +64,18 @@ class QuizInterface:
         print("Available categories:")
         for i, category in enumerate(categories, 1):
             print(f"{i}. {category}")
-            
+        
+        # Get user category choice
+        while True:
+            try:
+                choice = int(input("Select a category (enter number): "))
+                if 1 <= choice <= len(categories):
+                    selected_category = categories[choice-1]
+                    break
+                print("Invalid choice. Please try again.")
+            except ValueError:
+                print("Please enter a number.")
+                
         varCorrectAnswer = 0
 
         questionsList = list(questions.keys()) # creates a list of all the keys to the dictionary (questions)
