@@ -125,5 +125,67 @@ class LoginScreen:
                              command=lambda: self.goBackToCategory(quizWindow, parentWindow))
         backBtn.pack(side="right", padx=20)
 
+    def openAdminLogin(self):
+        """Opens the administrator login interface"""
+        # Hide the main window
+        self.root.withdraw()
+        
+        # Create admin login window
+        adminWindow = tk.Toplevel()
+        adminWindow.title("Quiz Bowl - Administrator Login")
+        adminWindow.geometry("500x300")
+        adminWindow.configure(bg="#f0f0f0")
+        
+        # Add a protocol to handle window closing
+        adminWindow.protocol("WM_DELETE_WINDOW", 
+                           lambda: self.onClosing(adminWindow))
+        
+        # Create the main frame
+        mainFrame = ttk.Frame(adminWindow, padding="20")
+        mainFrame.pack(expand=True, fill="both")
+        
+        # Add title
+        titleFont = font.Font(family='Arial', size=18, weight='bold')
+        title = ttk.Label(mainFrame, text="Administrator Login", font=titleFont)
+        title.pack(pady=20)
+        
+        # Username field
+        usernameFrame = ttk.Frame(mainFrame)
+        usernameFrame.pack(fill="x", pady=5)
+        
+        usernameLabel = ttk.Label(usernameFrame, text="Username:")
+        usernameLabel.pack(side="left", padx=5)
+        
+        usernameEntry = ttk.Entry(usernameFrame)
+        usernameEntry.pack(side="left", expand=True, fill="x", padx=5)
+        
+        # Password field
+        passwordFrame = ttk.Frame(mainFrame)
+        passwordFrame.pack(fill="x", pady=5)
+        
+        passwordLabel = ttk.Label(passwordFrame, text="Password:")
+        passwordLabel.pack(side="left", padx=5)
+        
+        passwordEntry = ttk.Entry(passwordFrame, show="*")
+        passwordEntry.pack(side="left", expand=True, fill="x", padx=5)
+        
+        # Buttons frame
+        btnFrame = ttk.Frame(mainFrame)
+        btnFrame.pack(pady=20)
+        
+        # Login button
+        loginBtn = ttk.Button(btnFrame, text="Login", 
+                              command=lambda: self.verifyAdmin(
+                                  usernameEntry.get(), 
+                                  passwordEntry.get(), 
+                                  adminWindow))
+        loginBtn.pack(side="left", padx=5)
+        
+        # Back button
+        backBtn = ttk.Button(btnFrame, text="Back", 
+                             command=lambda: self.goBackToLogin(adminWindow))
+        backBtn.pack(side="right", padx=5)
+    
+
 loginScrn = LoginScreen()
 loginScrn.root.mainloop() # Start the Tkinter main loop
