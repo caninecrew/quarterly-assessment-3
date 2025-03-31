@@ -1,3 +1,5 @@
+# ["History", "Science", "Literature", "Mathematics", "ComputerScience"]
+
 SAMPLE_QUESTIONS = {
     "History": [
         {"question": "Who was the U.S. President during the signing of the Civil Rights Act of 1964?", 
@@ -40,5 +42,46 @@ SAMPLE_QUESTIONS = {
          "correctAnswer": "George Washington", 
          "incorrectAnswers": ["Abraham Lincoln", "James Madison", "Thomas Jefferson"]}
     ],
-    # ... more categories ...
+    "Science": [
+        {"question": "Which gas is most commonly found in Earth's atmosphere?", 
+         "correctAnswer": "Nitrogen", 
+         "incorrectAnswers": ["Oxygen", "Carbon Dioxide", "Argon"]},
+
+        {"question": "What is the process by which plants convert sunlight into energy?", 
+         "correctAnswer": "Photosynthesis", 
+         "incorrectAnswers": ["Respiration", "Fermentation", "Transpiration"]},
+
+        {"question": "What kind of rock is formed by volcanic activity?", 
+         "correctAnswer": "Igneous", 
+         "incorrectAnswers": ["Sedimentary", "Metamorphic", "Fossil"]},
+
+        {"question": "Which part of the compass always points north?", 
+         "correctAnswer": "Magnetized needle", 
+         "incorrectAnswers": ["Baseplate", "Dial", "Direction of travel arrow"]},
+
+        {"question": "Which organ in the human body filters blood to produce urine?", 
+         "correctAnswer": "Kidney", 
+         "incorrectAnswers": ["Liver", "Bladder", "Pancreas"]},
+
+        {"question": "What type of energy is stored in food and fuel?", 
+         "correctAnswer": "Chemical energy", 
+         "incorrectAnswers": ["Thermal energy", "Kinetic energy", "Nuclear energy"]},
+
+        {"question": "Which constellation contains the North Star?", 
+         "correctAnswer": "Ursa Minor", 
+         "incorrectAnswers": ["Orion", "Ursa Major", "Cassiopeia"]},
+
+        {"question": "What weather instrument is used to measure air pressure?", 
+         "correctAnswer": "Barometer", 
+         "incorrectAnswers": ["Hygrometer", "Anemometer", "Thermometer"]},
+
+        {"question": "Which macronutrient is primarily responsible for building muscle?", 
+         "correctAnswer": "Protein", 
+         "incorrectAnswers": ["Carbohydrates", "Fats", "Vitamins"]},
+
+        {"question": "What type of tree loses its leaves annually?", 
+         "correctAnswer": "Deciduous", 
+         "incorrectAnswers": ["Coniferous", "Evergreen", "Perennial"]}
+    ]
 }
+
