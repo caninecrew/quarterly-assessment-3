@@ -97,6 +97,33 @@ class LoginScreen:
                                 command=lambda: self.goBackToLogin(categoryWindow))
             backBtn.pack(pady=20)
 
-            
+    def startQuiz(self, parentWindow, category):
+        """Start the quiz with the selected category"""
+        parentWindow.withdraw()
+        
+        # Create quiz window
+        quizWindow = tk.Toplevel()
+        quizWindow.title(f"Quiz Bowl - {category}")
+        quizWindow.geometry("800x600")
+        quizWindow.configure(bg="#f0f0f0")
+        
+        # Initialize quiz interface
+        quizInterface = QuizInterface(quizWindow)
+        
+        # Load questions from the selected category
+        if not quizInterface.getQuestionsFromCategory(category, 5):
+            messagebox.showerror("Error", f"No questions available in {category} category")
+            parentWindow.deiconify()
+            quizWindow.destroy()
+            return
+        
+        # Add back button
+        backFrame = ttk.Frame(quizWindow)
+        backFrame.pack(side="bottom", fill="x", pady=10)
+        
+        backBtn = ttk.Button(backFrame, text="Back to Categories", 
+                             command=lambda: self.goBackToCategory(quizWindow, parentWindow))
+        backBtn.pack(side="right", padx=20)
+
 loginScrn = LoginScreen()
 loginScrn.root.mainloop() # Start the Tkinter main loop
