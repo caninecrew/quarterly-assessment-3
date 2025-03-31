@@ -34,6 +34,12 @@ class QuizInterface:
         self.currentQuestionIndex = 0
         self.score = 0
         return len(self.questions) > 0
+    
+    def getCurrentQuestion(self):
+        """Return the current question object"""
+        if 0 <= self.current_question_index < len(self.questions):
+            return self.questions[self.current_question_index]
+        return None
 
     def runTextInterface(self):
         varCorrectAnswer = 0
