@@ -181,7 +181,7 @@ class Database:
         """Retrieve all questions from the specified category. Returns a list of questions."""
 
         if not self.createConnection():
-            return False        
+            return []        
                 
         try:
             cursor = self.conn.cursor()
