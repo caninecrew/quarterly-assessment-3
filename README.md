@@ -45,11 +45,10 @@ A Python quiz application developed for DS3850 Quarterly Assessment 3. This appl
 - `database.py` - Database management
 - `login.py` - Authentication screens
 - `admin.py` - Administrator interface
-- `quiz.py` - Quiz interface
 - `question.py` - Question class
 - `quizInterface.py` - Core quiz logic
 - `quizUI.py` - Quiz user interface
-- `sampleQeustions.py` - Initial sample questions for database population
+- `sampleQuestions.py` - Initial sample questions for database population
 - `quizBowl.db` - SQLite database file
 - `projectDescription.md` - Assignment requirements
 - `.gitignore` - Git ignore file
@@ -83,7 +82,7 @@ A Python quiz application developed for DS3850 Quarterly Assessment 3. This appl
 *Initial screen where users select their role as Quiz Taker or Administrator*
 
 ![Category Selection](screenshots/category_selection.png)
-*Quiz takers can select from five different categories (History, Science, Geography, etc.)*
+*Quiz takers can select from five different categories (History, Science, Computer Science, etc.)*
 
 ![Correct Answer Feedback](screenshots/correct_answer.png)
 *Instant feedback when a user selects the correct answer, with visual confirmation*
