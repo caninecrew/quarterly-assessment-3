@@ -173,6 +173,9 @@ class Database:
     def deleteQuestion(self, category, questionId):
         """Delete a question from the database. Returns True if successful, False otherwise."""
 
+        if not self._validateCategory(category):
+            return False
+        
         if not self.createConnection():
             return False
         
@@ -206,6 +209,9 @@ class Database:
     def getQuestions(self, category):
         """Retrieve all questions from the specified category. Returns a list of questions."""
 
+        if not self._validateCategory(category):
+            return False
+        
         if not self.createConnection():
             return []        
                 
@@ -222,6 +228,9 @@ class Database:
     def getRandomQuestions(self, category, limit=5):
         """Retrieve random questions from the specified category. Returns a list of questions."""
 
+        if not self._validateCategory(category):
+            return False
+    
         if not self.createConnection():
             return []        
                 
