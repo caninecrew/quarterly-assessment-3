@@ -77,6 +77,19 @@ class Database:
         finally:
             self.closeConnection()
 
+    def updateQuestion(self, category, question_id, question=None, correctAnswer=None, incorrectAnswers=None):
+        
+        # Checkthat incorrectAnswers is a list of 3 items if provided
+        if incorrectAnswers is not None and len(incorrectAnswers) != 3:
+            print("You must provide exactly 3 incorrect answers.")
+            return False
+        
+        conn = self.createConnection() # Establish connection to the database
+        if not conn: # Check if the connection was successful
+            return False
+        
+        
+
     def getQuestions(self, category):
         conn = self.createConnection()
         if not conn: # Check if the connection was successful
