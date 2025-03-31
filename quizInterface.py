@@ -4,6 +4,15 @@ from question import Question
 from database import Database
 import random as rand
 
+class QuizInterface:
+    def __ini__(self, root=None):
+        self.db = Database()
+        self.questions = []
+        self.current_question_index = 0
+        self.score = 0
+        self.category = None
+        self.root = root
+        
 varCorrectAnswer = 0
 
 questionsList = list(questions.keys()) # creates a list of all the keys to the dictionary (questions)
