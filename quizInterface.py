@@ -13,6 +13,28 @@ class QuizInterface:
         self.category = None
         self.root = root
 
+    def get_questions_from_category(self, category, num_questions=5):
+        """Fetch questions from the specified category"""
+        self.category = category
+        question_dicts = self.db.getRandomQuestions(category, num_questions)
+        
+        # Convert dictionaries to Question objects
+        self.questions = []
+        for q_dict in question_dicts:
+            question = Question(
+                q_dict["question"],
+                q_dict["correctAnswer"],
+                q_dict["incorrectAnswers"]
+            )
+            # Add category and ID as attributes
+            question.category = category
+            question.id = q_dict["id"]
+            self.questions.append(question)
+        
+        self.current_question_index = 0
+        self.score = 0
+        return len(self.questions) > 0
+
 
 def runTextInterface(self):
     varCorrectAnswer = 0
