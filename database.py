@@ -5,7 +5,7 @@
 # Assignment: Quarterly Assessment 3
 # Description: Database operations for Quiz Bowl
 
-import random as rand # random module (as rand)
+import random as rand
 
 varCorrectAnswer = 0
 
