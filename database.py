@@ -155,9 +155,12 @@ class Database:
         try:
             self.beginSession()
             for category, questions in sampleData.items():
+                # Fix the category name for "Computer Science" -> "ComputerScience"
+                db_category = category.replace(" ", "") if category == "Computer Science" else category
+                
                 for q in questions:
                     self.addQuestion(
-                        category,
+                        db_category,
                         q["question"],
                         q["correctAnswer"],
                         q["incorrectAnswers"]
@@ -168,7 +171,6 @@ class Database:
             return False
         finally:
             self.endSession()
-
 
     def addQuestion(self, category, question, correctAnswer, incorrectAnswers):
         """Add a question to the database. Returns True if successful, False otherwise."""
