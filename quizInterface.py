@@ -13,7 +13,7 @@ class QuizInterface:
         self.category = None
         self.root = root
 
-    def get_questions_from_category(self, category, numQuestions=5):
+    def getQuestionsFromCategory(self, category, numQuestions=5):
         """Fetch questions from the specified category"""
         self.category = category
         questionDicts = self.db.getRandomQuestions(category, numQuestions)
