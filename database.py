@@ -6,10 +6,9 @@
 # Description: Database operations for Quiz Bowl
 
 import random as rand
+from question import *
 
 varCorrectAnswer = 0
-
-
 
 questionsList = list(questions.keys()) # creates a list of all the keys to the dictionary (questions)
 questionsGame = [] # the questions chosen for the game (initialize variable)
