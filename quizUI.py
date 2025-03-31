@@ -261,14 +261,17 @@ class QuizUI:
         # Get fresh questions from the same category
         print(f"Restarting quiz in category: {self.category}")
         
-        # Need to completely clear and rebuild the UI first
+        # Need to completely recreate the quiz interface
+        
+        # First, destroy all widgets in the content frame
         for widget in self.contentFrame.winfo_children():
             widget.destroy()
         
-        # Reset the quiz interface
-        self.quizInterface = QuizInterface(self.root)
+        # Destroy and recreate the content frame itself to avoid layout issues
+        self.contentFrame.destroy()
         
-        # Try to get new questions
+        # Reset the quiz interface with new questions
+        self.quizInterface = QuizInterface(self.root)
         success = self.quizInterface.getQuestionsFromCategory(self.category, 5)
         
         if not success:
@@ -278,7 +281,7 @@ class QuizUI:
             
         print(f"Retrieved {len(self.quizInterface.questions)} new questions")
         
-        # Set up the UI again
+        # Create a completely new UI
         self.setupUI()
         
         # Start with the first question
