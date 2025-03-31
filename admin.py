@@ -268,13 +268,18 @@ class AddQuestion:
             return
         
         # Add question to database
-        success = self.db.addQuestion(category, questionText, correct, incorrect)
-        
-        if success:
-            messagebox.showinfo("Success", "Question added successfully!")
-            self.window.destroy()
-        else:
-            messagebox.showerror("Error", "Failed to add question. Please try again.")
+        try:
+            success = self.db.addQuestion(category, questionText, correct, incorrect)
+            
+            if success:
+                messagebox.showinfo("Success", "Question added successfully!")
+                self.window.destroy()
+            else:
+                messagebox.showerror("Error", "Failed to add question. Please try again.")
+        except sqlite3.Error as e:
+            messagebox.showerror("Database Error", f"An error occurred while adding the question: {e}")
+        except Exception as e:
+            messagebox.showerror("Unexpected Error", f"An unexpected error occurred: {e}")
 
 class ViewQuestions:
     def __init__(self, parent, db):
@@ -503,13 +508,18 @@ class ViewQuestions:
         
         # Confirm deletion
         if messagebox.askyesno("Confirm Delete", f"Are you sure you want to delete this question?\n\n{questionText}"):
-            success = self.db.deleteQuestion(category, questionId)
-            
-            if success:
-                messagebox.showinfo("Success", "Question deleted successfully")
-                self.loadQuestions()  # Reload questions
-            else:
-                messagebox.showerror("Error", "Failed to delete question")
+            try:
+                success = self.db.deleteQuestion(category, questionId)
+                
+                if success:
+                    messagebox.showinfo("Success", "Question deleted successfully")
+                    self.loadQuestions()  # Reload questions
+                else:
+                    messagebox.showerror("Error", "Failed to delete question")
+            except sqlite3.Error as e:
+                messagebox.showerror("Database Error", f"An error occurred while deleting the question: {e}")
+            except Exception as e:
+                messagebox.showerror("Unexpected Error", f"An unexpected error occurred: {e}")
 
 class EditQuestion:
     def __init__(self, parent, db, category, questionId, reloadCallback):
@@ -533,15 +543,16 @@ class EditQuestion:
     
     def loadQuestionData(self):
         """Load question data from database"""
-        conn = self.db.connect()
-        if not conn:
+        # Use beginSession instead of connect for consistent session management
+        if not self.db.beginSession():
             messagebox.showerror("Error", "Database connection failed")
             self.window.destroy()
             return
-            
-        cursor = conn.cursor()
         
         try:
+            # Create a cursor from the existing connection
+            cursor = self.db.conn.cursor()
+            
             # Get the question data
             cursor.execute(f"SELECT * FROM {self.category} WHERE id = ?", (self.questionId,))
             questionData = cursor.fetchone()
@@ -549,7 +560,6 @@ class EditQuestion:
             if not questionData:
                 messagebox.showerror("Error", f"Question #{self.questionId} not found")
                 self.window.destroy()
-                conn.close()
                 return
                 
             # Store the data
@@ -567,7 +577,8 @@ class EditQuestion:
             messagebox.showerror("Error", f"Database error: {e}")
             self.window.destroy()
         finally:
-            conn.close()
+            # Always end the session when done
+            self.db.endSession()
     
     def setupUI(self):
         # Main frame
@@ -700,17 +711,29 @@ class EditQuestion:
             return
         
         # Update question in database
-        success = self.db.updateQuestion(
-            self.category,
-            self.questionId,
-            questionText,
-            correct,
-            incorrect
-        )
-        
-        if success:
-            messagebox.showinfo("Success", "Question updated successfully!")
-            self.reloadCallback()  # Reload the question list
-            self.window.destroy()
-        else:
-            messagebox.showerror("Error", "Failed to update question. Please try again.")
+        try:
+            # Begin a database session
+            self.db.beginSession()
+            
+            success = self.db.updateQuestion(
+                self.category,
+                self.questionId,
+                questionText,
+                correct,
+                incorrect
+            )
+            
+            if success:
+                messagebox.showinfo("Success", "Question updated successfully!")
+                self.reloadCallback()  # Reload the question list
+                self.window.destroy()
+            else:
+                messagebox.showerror("Error", "Failed to update question. Please try again.")
+                
+        except sqlite3.Error as e:
+            messagebox.showerror("Database Error", f"An error occurred while updating the question: {e}")
+        except Exception as e:
+            messagebox.showerror("Unexpected Error", f"An unexpected error occurred: {e}")
+        finally:
+            # Always end the session when done
+            self.db.endSession()
