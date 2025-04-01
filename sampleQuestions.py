@@ -124,87 +124,87 @@ SAMPLE_QUESTIONS = {
          "correctAnswer": "Wilson Rawls", 
          "incorrectAnswers": ["Lois Lowry", "Gary Paulsen", "Jack London"]}
     ],
-    "Mathematics": [
-        {"question": "What is the area of a triangle with a base of 10 inches and a height of 6 inches?", 
-         "correctAnswer": "30 square inches", 
-         "incorrectAnswers": ["60 square inches", "16 square inches", "20 square inches"]},
+    "DS3850": [
+        {"question": "Which of the following is a Python GUI toolkit used in this course?", 
+         "correctAnswer": "Tkinter", 
+         "incorrectAnswers": ["PyQt", "Kivy", "wxPython"]},
 
-        {"question": "You have 3 trail mix bags, each weighing 1.5 pounds. What’s the total weight?", 
-         "correctAnswer": "4.5 pounds", 
-         "incorrectAnswers": ["3.5 pounds", "6 pounds", "5 pounds"]},
+        {"question": "What is the purpose of the __init__ method in Python?", 
+         "correctAnswer": "To initialize a new object's attributes", 
+         "incorrectAnswers": ["To import libraries", "To end the program execution", "To connect to a database"]},
 
-        {"question": "What is the next number in the sequence: 2, 4, 8, 16, ___?", 
-         "correctAnswer": "32", 
-         "incorrectAnswers": ["20", "30", "24"]},
+        {"question": "What does OOP stand for in software development?", 
+         "correctAnswer": "Object-Oriented Programming", 
+         "incorrectAnswers": ["Ordered Operation Procedures", "Optimal Output Processing", "Ongoing Object Protocol"]},
 
-        {"question": "If you split a $120 budget evenly among 8 Scouts, how much does each receive?", 
-         "correctAnswer": "$15", 
-         "incorrectAnswers": ["$12", "$14", "$10"]},
+        {"question": "Which database engine is used in the Quiz Bowl application?", 
+         "correctAnswer": "SQLite", 
+         "incorrectAnswers": ["MySQL", "MongoDB", "Oracle"]},
 
-        {"question": "What is the mean of these numbers: 4, 8, 6, 10, 2?", 
-         "correctAnswer": "6", 
-         "incorrectAnswers": ["5", "7", "8"]},
+        {"question": "What is an event-driven programming model primarily used for?", 
+         "correctAnswer": "GUI applications", 
+         "incorrectAnswers": ["Data analysis", "Web servers", "Database management"]},
 
-        {"question": "A tent has a rectangular base 6 ft by 8 ft. What is the perimeter of the base?", 
-         "correctAnswer": "28 ft", 
-         "incorrectAnswers": ["48 ft", "36 ft", "14 ft"]},
+        {"question": "Which method is called when a Tkinter button is clicked?", 
+         "correctAnswer": "The command callback function", 
+         "incorrectAnswers": ["__init__()", "mainloop()", "update()"]},
 
-        {"question": "What is 25% of 80?", 
-         "correctAnswer": "20", 
-         "incorrectAnswers": ["15", "18", "25"]},
+        {"question": "What is the purpose of exception handling in Python?", 
+         "correctAnswer": "To gracefully handle runtime errors", 
+         "incorrectAnswers": ["To make code run faster", "To create user interfaces", "To connect to databases"]},
 
-        {"question": "What is the probability of flipping heads on a fair coin?", 
-         "correctAnswer": "1/2", 
-         "incorrectAnswers": ["1/4", "1/3", "2/3"]},
+        {"question": "Which of the following is NOT a benefit of using classes?", 
+         "correctAnswer": "Reduced memory usage", 
+         "incorrectAnswers": ["Code reusability", "Encapsulation", "Inheritance"]},
 
-        {"question": "How many degrees are in the sum of interior angles of a triangle?", 
-         "correctAnswer": "180", 
-         "incorrectAnswers": ["90", "270", "360"]},
+        {"question": "What does CRUD stand for in application development?", 
+         "correctAnswer": "Create, Read, Update, Delete", 
+         "incorrectAnswers": ["Copy, Review, Undo, Debug", "Create, Run, Update, Deploy", "Code, Run, Update, Document"]},
 
-        {"question": "You hike 3 miles in 1 hour. At this rate, how far can you hike in 4 hours?", 
-         "correctAnswer": "12 miles", 
-         "incorrectAnswers": ["10 miles", "9 miles", "8 miles"]}
+        {"question": "Which design pattern separates data representation from user interface?", 
+         "correctAnswer": "MVC (Model-View-Controller)", 
+         "incorrectAnswers": ["Singleton", "Observer", "Factory"]}
     ],
-    "Computer Science": [
-        {"question": "What does 'CPU' stand for in computing?", 
-         "correctAnswer": "Central Processing Unit", 
-         "incorrectAnswers": ["Computer Performance Unit", "Central Power Utility", "Core Processing Unit"]},
+    "DS3860": [
+        {"question": "Which SQL statement is used to retrieve data from a database?", 
+         "correctAnswer": "SELECT", 
+         "incorrectAnswers": ["INSERT", "UPDATE", "DELETE"]},
 
-        {"question": "In Python, what symbol is used to begin a comment?", 
-         "correctAnswer": "#", 
-         "incorrectAnswers": ["//", "/*", "<!--"]},
+        {"question": "What does SQL stand for?", 
+         "correctAnswer": "Structured Query Language", 
+         "incorrectAnswers": ["Simple Question Language", "System Quality Logic", "Standard Query Lookup"]},
 
-        {"question": "Which data structure uses the First In, First Out (FIFO) principle?", 
-         "correctAnswer": "Queue", 
-         "incorrectAnswers": ["Stack", "List", "Dictionary"]},
+        {"question": "Which of the following is a primary key constraint?", 
+         "correctAnswer": "Uniquely identifies each record in a table", 
+         "incorrectAnswers": ["Can have duplicate values", "Can be null", "Multiple can exist in a table"]},
 
-        {"question": "What is the primary language used for querying databases?", 
-         "correctAnswer": "SQL", 
-         "incorrectAnswers": ["Python", "HTML", "C++"]},
+        {"question": "What type of relationship exists when one record in a table is related to many records in another table?", 
+         "correctAnswer": "One-to-many", 
+         "incorrectAnswers": ["Many-to-many", "One-to-one", "Self-referencing"]},
 
-        {"question": "Which of the following is NOT a type of loop in most programming languages?", 
-         "correctAnswer": "Switch loop", 
-         "incorrectAnswers": ["For loop", "While loop", "Do-while loop"]},
+        {"question": "What does DBMS stand for?", 
+         "correctAnswer": "Database Management System", 
+         "incorrectAnswers": ["Data Building and Management Software", "Database Maintenance Service", "Digital Business Management System"]},
 
-        {"question": "What type of value does a Boolean variable hold?", 
-         "correctAnswer": "True or False", 
-         "incorrectAnswers": ["String", "Integer", "Float"]},
+        {"question": "Which normal form eliminates transitive dependencies?", 
+         "correctAnswer": "Third Normal Form (3NF)", 
+         "incorrectAnswers": ["First Normal Form (1NF)", "Second Normal Form (2NF)", "Boyce-Codd Normal Form (BCNF)"]},
 
-        {"question": "Which HTML tag is used to create a hyperlink?", 
-         "correctAnswer": "<a>", 
-         "incorrectAnswers": ["<link>", "<href>", "<url>"]},
+        {"question": "Which SQL join returns rows when there is at least one match in both tables?", 
+         "correctAnswer": "INNER JOIN", 
+         "incorrectAnswers": ["LEFT JOIN", "RIGHT JOIN", "FULL OUTER JOIN"]},
 
-        {"question": "What is the name of the error when a program runs but gives incorrect output?", 
-         "correctAnswer": "Logic error", 
-         "incorrectAnswers": ["Syntax error", "Runtime error", "Compile-time error"]},
+        {"question": "What is an entity in database design?", 
+         "correctAnswer": "A person, place, object, event, or concept about which data is stored", 
+         "incorrectAnswers": ["A column in a table", "A relationship between tables", "A constraint on data values"]},
 
-        {"question": "Which file extension is commonly associated with Python files?", 
-         "correctAnswer": ".py", 
-         "incorrectAnswers": [".java", ".exe", ".sql"]},
+        {"question": "What is the purpose of an index in a database?", 
+         "correctAnswer": "To speed up data retrieval operations", 
+         "incorrectAnswers": ["To enforce data integrity", "To create relationships between tables", "To store backup data"]},
 
-        {"question": "In programming, what is a function?", 
-         "correctAnswer": "A reusable block of code that performs a task", 
-         "incorrectAnswers": ["A comment in the code", "A type of variable", "A loop structure"]}
+        {"question": "Which statement is used to combine the results of two SELECT statements?", 
+         "correctAnswer": "UNION", 
+         "incorrectAnswers": ["JOIN", "MERGE", "COMBINE"]}
     ]
 }
 
