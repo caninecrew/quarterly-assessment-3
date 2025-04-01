@@ -1,4 +1,4 @@
-# ["Principles of Accounting II", "Bus Anyltcs:Data Drv Dec Makng", "Prog Logic & Analytic Thinking", "Business Applications Develop", "Business Database Mgmt"]
+# ["ACCT 2120 - Principles of Accounting II", "DS 3620 - Bus Anyltcs:Data Drv Dec Makng", "DS 3810 - Prog Logic & Analytic Thinking", "DS 3850 - Business Applications Develop", "DS 3860 - Business Database Mgmt"]
 
 SAMPLE_QUESTIONS = {
     "History": [
