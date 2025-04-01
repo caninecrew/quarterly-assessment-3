@@ -1,46 +1,46 @@
 # ["ACCT 2120 - Principles of Accounting II", "DS 3620 - Bus Anyltcs:Data Drv Dec Makng", "DS 3810 - Prog Logic & Analytic Thinking", "DS 3850 - Business Applications Develop", "DS 3860 - Business Database Mgmt"]
 
 SAMPLE_QUESTIONS = {
-    "History": [
-        {"question": "Who was the U.S. President during the signing of the Civil Rights Act of 1964?", 
-         "correctAnswer": "Lyndon B. Johnson", 
-         "incorrectAnswers": ["Dwight D. Eisenhower", "John F. Kennedy", "Richard Nixon"]},
+    "ACCT2120": [
+        {"question": "Which financial statement shows a company's financial position at a specific point in time?", 
+         "correctAnswer": "Balance Sheet", 
+         "incorrectAnswers": ["Income Statement", "Statement of Cash Flows", "Statement of Retained Earnings"]},
         
-        {"question": "What year was the Boy Scouts of America officially founded?", 
-         "correctAnswer": "1910", 
-         "incorrectAnswers": ["1890", "1929", "1935"]},
+        {"question": "The accounting equation is:", 
+         "correctAnswer": "Assets = Liabilities + Equity", 
+         "incorrectAnswers": ["Assets = Liabilities - Equity", "Equity = Assets + Liabilities", "Revenue - Expenses = Equity"]},
         
-        {"question": "The term 'Trail of Tears' refers to the forced relocation of which Native American tribe, among others?", 
-         "correctAnswer": "Cherokee", 
-         "incorrectAnswers": ["Sioux", "Apache", "Iroquois"]},
+        {"question": "Which of the following is NOT a current asset?", 
+         "correctAnswer": "Equipment", 
+         "incorrectAnswers": ["Cash", "Accounts Receivable", "Inventory"]},
         
-        {"question": "Who was the first Secretary of the Treasury and is featured on the $10 bill?", 
-         "correctAnswer": "Alexander Hamilton", 
-         "incorrectAnswers": ["Thomas Jefferson", "John Adams", "Andrew Jackson"]},
+        {"question": "FIFO stands for:", 
+         "correctAnswer": "First In, First Out", 
+         "incorrectAnswers": ["First In, Final Out", "Financial Input, Fiscal Output", "Fixed Income, Fixed Outlay"]},
         
-        {"question": "Which of the following conflicts occurred first?", 
-         "correctAnswer": "Spanish-American War", 
-         "incorrectAnswers": ["Vietnam War", "Korean War", "World War II"]},
+        {"question": "Depreciation is an example of:", 
+         "correctAnswer": "A non-cash expense", 
+         "incorrectAnswers": ["A liability", "A current asset", "Revenue"]},
         
-        {"question": "What document begins with the phrase 'When in the course of human events...'", 
-         "correctAnswer": "Declaration of Independence", 
-         "incorrectAnswers": ["U.S. Constitution", "Federalist Papers", "Emancipation Proclamation"]},
+        {"question": "What accounting principle states that businesses should record expenses in the same period as the revenues they helped generate?", 
+         "correctAnswer": "Matching principle", 
+         "incorrectAnswers": ["Conservatism principle", "Consistency principle", "Going concern principle"]},
         
-        {"question": "Who led the March on Washington and gave the 'I Have a Dream' speech in 1963?", 
-         "correctAnswer": "Martin Luther King Jr.", 
-         "incorrectAnswers": ["Malcolm X", "Thurgood Marshall", "John Lewis"]},
+        {"question": "Which method of inventory valuation typically results in higher net income during inflation?", 
+         "correctAnswer": "FIFO", 
+         "incorrectAnswers": ["LIFO", "Weighted Average", "Specific Identification"]},
         
-        {"question": "What was the purpose of the Lewis and Clark Expedition?", 
-         "correctAnswer": "To explore and map the Louisiana Territory", 
-         "incorrectAnswers": ["To defeat Native tribes", "To build early railroads", "To find a route to Asia"]},
+        {"question": "Unearned revenue is considered what type of account?", 
+         "correctAnswer": "Liability", 
+         "incorrectAnswers": ["Asset", "Revenue", "Expense"]},
         
-        {"question": "What year did the United States land astronauts on the moon for the first time?", 
-         "correctAnswer": "1969", 
-         "incorrectAnswers": ["1965", "1967", "1972"]},
+        {"question": "What is the journal entry to record the purchase of equipment with cash?", 
+         "correctAnswer": "Dr Equipment, Cr Cash", 
+         "incorrectAnswers": ["Dr Cash, Cr Equipment", "Dr Equipment, Cr Accounts Payable", "Dr Expense, Cr Cash"]},
         
-        {"question": "Which U.S. President warned against the formation of political parties in his farewell address?", 
-         "correctAnswer": "George Washington", 
-         "incorrectAnswers": ["Abraham Lincoln", "James Madison", "Thomas Jefferson"]}
+        {"question": "The ability of a company to pay its short-term obligations is called:", 
+         "correctAnswer": "Liquidity", 
+         "incorrectAnswers": ["Solvency", "Profitability", "Efficiency"]}
     ],
     "Science": [
         {"question": "Which gas is most commonly found in Earth's atmosphere?", 
