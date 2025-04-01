@@ -1,4 +1,4 @@
-# ["History", "Science", "Literature", "Mathematics", "ComputerScience"]
+# ["Principles of Accounting II", "Bus Anyltcs:Data Drv Dec Makng", "Prog Logic & Analytic Thinking", "Business Applications Develop", "Business Database Mgmt"]
 
 SAMPLE_QUESTIONS = {
     "History": [
