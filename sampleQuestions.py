@@ -42,46 +42,46 @@ SAMPLE_QUESTIONS = {
          "correctAnswer": "Liquidity", 
          "incorrectAnswers": ["Solvency", "Profitability", "Efficiency"]}
     ],
-    "Science": [
-        {"question": "Which gas is most commonly found in Earth's atmosphere?", 
-         "correctAnswer": "Nitrogen", 
-         "incorrectAnswers": ["Oxygen", "Carbon Dioxide", "Argon"]},
+    "DS3620": [
+        {"question": "What type of analysis examines historical data to identify patterns and predict future outcomes?", 
+         "correctAnswer": "Predictive analytics", 
+         "incorrectAnswers": ["Descriptive analytics", "Prescriptive analytics", "Diagnostic analytics"]},
 
-        {"question": "What is the process by which plants convert sunlight into energy?", 
-         "correctAnswer": "Photosynthesis", 
-         "incorrectAnswers": ["Respiration", "Fermentation", "Transpiration"]},
+        {"question": "Which visualization is best for showing the relationship between two numerical variables?", 
+         "correctAnswer": "Scatter plot", 
+         "incorrectAnswers": ["Pie chart", "Bar chart", "Histogram"]},
 
-        {"question": "What kind of rock is formed by volcanic activity?", 
-         "correctAnswer": "Igneous", 
-         "incorrectAnswers": ["Sedimentary", "Metamorphic", "Fossil"]},
+        {"question": "What statistical measure represents the middle value in a dataset?", 
+         "correctAnswer": "Median", 
+         "incorrectAnswers": ["Mode", "Mean", "Range"]},
 
-        {"question": "Which part of the compass always points north?", 
-         "correctAnswer": "Magnetized needle", 
-         "incorrectAnswers": ["Baseplate", "Dial", "Direction of travel arrow"]},
+        {"question": "Which of the following is NOT a common data quality issue?", 
+         "correctAnswer": "Data normalization", 
+         "incorrectAnswers": ["Missing values", "Duplicate records", "Inconsistent formatting"]},
 
-        {"question": "Which organ in the human body filters blood to produce urine?", 
-         "correctAnswer": "Kidney", 
-         "incorrectAnswers": ["Liver", "Bladder", "Pancreas"]},
+        {"question": "What does KPI stand for in business analytics?", 
+         "correctAnswer": "Key Performance Indicator", 
+         "incorrectAnswers": ["Knowledge Process Integration", "Key Process Input", "Knowledge Performance Index"]},
 
-        {"question": "What type of energy is stored in food and fuel?", 
-         "correctAnswer": "Chemical energy", 
-         "incorrectAnswers": ["Thermal energy", "Kinetic energy", "Nuclear energy"]},
+        {"question": "Which of these is a measure of data dispersion?", 
+         "correctAnswer": "Standard deviation", 
+         "incorrectAnswers": ["Mean", "Median", "Mode"]},
 
-        {"question": "Which constellation contains the North Star?", 
-         "correctAnswer": "Ursa Minor", 
-         "incorrectAnswers": ["Orion", "Ursa Major", "Cassiopeia"]},
+        {"question": "What type of analysis focuses on why something happened?", 
+         "correctAnswer": "Diagnostic analytics", 
+         "incorrectAnswers": ["Descriptive analytics", "Predictive analytics", "Prescriptive analytics"]},
 
-        {"question": "What weather instrument is used to measure air pressure?", 
-         "correctAnswer": "Barometer", 
-         "incorrectAnswers": ["Hygrometer", "Anemometer", "Thermometer"]},
+        {"question": "Which programming language is NOT commonly used in data analytics?", 
+         "correctAnswer": "Cobol", 
+         "incorrectAnswers": ["Python", "R", "SQL"]},
 
-        {"question": "Which macronutrient is primarily responsible for building muscle?", 
-         "correctAnswer": "Protein", 
-         "incorrectAnswers": ["Carbohydrates", "Fats", "Vitamins"]},
+        {"question": "What does ETL stand for in data management?", 
+         "correctAnswer": "Extract, Transform, Load", 
+         "incorrectAnswers": ["Export, Transfer, Link", "Evaluate, Test, Launch", "Electronic Transaction Log"]},
 
-        {"question": "What type of tree loses its leaves annually?", 
-         "correctAnswer": "Deciduous", 
-         "incorrectAnswers": ["Coniferous", "Evergreen", "Perennial"]}
+        {"question": "Which technique helps identify unusual patterns that do not conform to expected behavior?", 
+         "correctAnswer": "Anomaly detection", 
+         "incorrectAnswers": ["Regression analysis", "Cluster analysis", "Factor analysis"]}
     ],
     "Literature": [
         {"question": "Who wrote *To Kill a Mockingbird*, a novel that explores themes of justice and morality?", 
