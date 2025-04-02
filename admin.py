@@ -154,7 +154,7 @@ class AddQuestion:
         categoryLabel.pack(side="left", padx=5)
         
         self.categoryVar = tk.StringVar()
-        categories = self.db.getCategories()
+        categories = self.db.getCategories()  # Fetch updated categories
         categoryCombo = ttk.Combobox(
             categoryFrame,
             textvariable=self.categoryVar,
@@ -309,18 +309,18 @@ class ViewQuestions:
         title.pack(pady=10)
         
         # Category filter
-        filterFrame = ttk.Frame(mainFrame)
+        filterFrame = ttk.Frame(mainFrame)  # Define filterFrame
         filterFrame.pack(fill="x", pady=10)
         
         filterLabel = ttk.Label(
             filterFrame,
-            text="Filter by Category:",
+            text="Category:",
             width=15
         )
         filterLabel.pack(side="left", padx=5)
         
         self.categoryVar = tk.StringVar()
-        categories = self.db.getCategories()
+        categories = self.db.getCategories()  # Fetch updated categories
         categoryCombo = ttk.Combobox(
             filterFrame,
             textvariable=self.categoryVar,

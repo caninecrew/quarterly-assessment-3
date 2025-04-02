@@ -29,7 +29,7 @@ class Database:
     
     def _validateCategory(self, category):
         """Validate if the category exists in the database."""
-        valid_categories = ["History", "Science", "Literature", "Mathematics", "ComputerScience"]
+        valid_categories = self.getCategories()
         if category not in valid_categories:
             print(f"Invalid category: {category}. Valid categories are: {', '.join(valid_categories)}")
             return False
@@ -79,18 +79,16 @@ class Database:
             return None  # Return None on error, not False
 
     def createTables(self):
-        """Create the necessary tables if they don't exist"""
+        """Create the necessary tables if they don't exist."""
         conn = self.connect()
-        
-        # Check if connection was successful
         if conn is None:
             print("Failed to create tables: could not connect to database")
             return False
-            
+
         try:
-            cursor = conn.cursor()    
-            # Create category-specific tables
-            categories = ["History", "Science", "Literature", "Mathematics", "ComputerScience"]
+            cursor = conn.cursor()
+            # Create tables for each category
+            categories = self.getCategories()
             for category in categories:
                 cursor.execute(f'''
                 CREATE TABLE IF NOT EXISTS {category} (
@@ -101,8 +99,6 @@ class Database:
                     incorrectAnswer2 TEXT NOT NULL,
                     incorrectAnswer3 TEXT NOT NULL
                 )''')
-            
-            # Commit changes
             conn.commit()
             return True
         except sqlite3.Error as e:
@@ -324,7 +320,7 @@ class Database:
                 count = cursor.fetchone()[0]
             else:
                 count = 0
-                valid_categories = ["History", "Science", "Literature", "Mathematics", "ComputerScience"]
+                valid_categories = self.getCategories()
                 for cat in valid_categories:  # Changed from get_all_categories() to use the existing list
                     cursor.execute(f"SELECT COUNT(*) FROM {cat}")
                     count += cursor.fetchone()[0]
@@ -358,7 +354,7 @@ class Database:
 
     def getCategories(self):
         """Return a list of all categories in the database."""
-        return ["History", "Science", "Literature", "Mathematics", "ComputerScience"]
+        return ["ACCT2120", "DS3620", "DS3810", "DS3850", "DS3860"]
     
     def verifyAdminCredentials(self, username, password):
         """Verify admin credentials."""
