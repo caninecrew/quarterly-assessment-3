@@ -83,46 +83,46 @@ SAMPLE_QUESTIONS = {
          "correctAnswer": "Anomaly detection", 
          "incorrectAnswers": ["Regression analysis", "Cluster analysis", "Factor analysis"]}
     ],
-    "Literature": [
-        {"question": "Who wrote *To Kill a Mockingbird*, a novel that explores themes of justice and morality?", 
-         "correctAnswer": "Harper Lee", 
-         "incorrectAnswers": ["Mark Twain", "F. Scott Fitzgerald", "John Steinbeck"]},
+    "DS3810": [
+        {"question": "What is the primary goal of programming logic?", 
+         "correctAnswer": "To solve problems systematically", 
+         "incorrectAnswers": ["To write complex code", "To memorize syntax", "To debug errors"]},
 
-        {"question": "What is the name of the boy who leads the group in *Lord of the Flies* before things fall apart?", 
-         "correctAnswer": "Ralph", 
-         "incorrectAnswers": ["Jack", "Simon", "Piggy"]},
+        {"question": "Which of the following is a key component of programming logic?", 
+         "correctAnswer": "Control structures", 
+         "incorrectAnswers": ["Data visualization", "Database indexing", "Network protocols"]},
 
-        {"question": "*The Call of the Wild* is set in which harsh, rugged environment?", 
-         "correctAnswer": "Yukon Territory", 
-         "incorrectAnswers": ["Rocky Mountains", "Alaskan Coast", "Sierra Nevada"]},
+        {"question": "What is the purpose of a flowchart in programming?", 
+         "correctAnswer": "To visually represent the steps in a process", 
+         "incorrectAnswers": ["To write code", "To debug errors", "To compile programs"}},
 
-        {"question": "Which American author is known for adventure novels such as *The Adventures of Tom Sawyer* and *Huckleberry Finn*?", 
-         "correctAnswer": "Mark Twain", 
-         "incorrectAnswers": ["Ernest Hemingway", "Jack London", "Nathaniel Hawthorne"]},
+        {"question": "Which of the following is an example of a conditional statement?", 
+         "correctAnswer": "if-else", 
+         "incorrectAnswers": ["for loop", "function call", "variable declaration"]},
 
-        {"question": "What genre best describes *Hatchet* by Gary Paulsen?", 
-         "correctAnswer": "Survival fiction", 
-         "incorrectAnswers": ["Science fiction", "Mystery", "Historical fiction"]},
+        {"question": "What is the primary purpose of pseudocode?", 
+         "correctAnswer": "To outline a program's logic in plain language", 
+         "incorrectAnswers": ["To execute code", "To debug errors", "To compile programs"]},
 
-        {"question": "In *Of Mice and Men*, what is Lennie's dream along with George?", 
-         "correctAnswer": "To own a small farm", 
-         "incorrectAnswers": ["To strike gold", "To run a store", "To write a novel"]},
+        {"question": "Which of the following is NOT a common data type in programming?", 
+         "correctAnswer": "Document", 
+         "incorrectAnswers": ["Integer", "String", "Boolean"]},
 
-        {"question": "What famous dystopian novel begins with the line, 'It was a bright cold day in April, and the clocks were striking thirteen'?", 
-         "correctAnswer": "*1984*", 
-         "incorrectAnswers": ["*Fahrenheit 451*", "*Brave New World*", "*The Giver*"]},
+        {"question": "What is an algorithm?", 
+         "correctAnswer": "A step-by-step procedure for solving a problem", 
+         "incorrectAnswers": ["A programming language", "A type of software", "A debugging tool"]},
 
-        {"question": "Which character famously says, 'The greatest thing you'll ever learn is just to love and be loved in return'?", 
-         "correctAnswer": "Christian from *Moulin Rouge!*", 
-         "incorrectAnswers": ["Jay Gatsby", "Atticus Finch", "Romeo"]},
+        {"question": "Which of the following is an example of a loop structure?", 
+         "correctAnswer": "while", 
+         "incorrectAnswers": ["if", "switch", "case"]},
 
-        {"question": "Which novel follows Scout Finch as she grows up in the racially segregated South?", 
-         "correctAnswer": "*To Kill a Mockingbird*", 
-         "incorrectAnswers": ["*The Secret Life of Bees*", "*A Separate Peace*", "*Roll of Thunder, Hear My Cry*"]},
+        {"question": "What is the purpose of debugging in programming?", 
+         "correctAnswer": "To identify and fix errors in code", 
+         "incorrectAnswers": ["To write new code", "To optimize performance", "To compile programs"]},
 
-        {"question": "Who wrote *Where the Red Fern Grows*, a story about a boy and his hunting dogs?", 
-         "correctAnswer": "Wilson Rawls", 
-         "incorrectAnswers": ["Lois Lowry", "Gary Paulsen", "Jack London"]}
+        {"question": "Which of the following best describes 'critical thinking' in programming?", 
+         "correctAnswer": "Analyzing problems and designing effective solutions", 
+         "incorrectAnswers": ["Memorizing syntax", "Writing complex code", "Following instructions without question"]}
     ],
     "DS3850": [
         {"question": "Which of the following is a Python GUI toolkit used in this course?", 
